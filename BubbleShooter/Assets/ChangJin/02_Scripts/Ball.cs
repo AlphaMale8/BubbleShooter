@@ -16,8 +16,8 @@ public class Ball : MonoBehaviour
     [SerializeField]
     public float CameraToBallDestroyDistance = 3.0f;
 
-    [SerializeField] private Vector3 MinVector = new Vector3(-5.0f, 0.3f, 5.0f);
-    [SerializeField] private Vector3 MaxVector = new Vector3(5.0f, 0.3f, 1.0f);
+    [SerializeField] public Vector3 MinVector = new Vector3(-5.0f, 0.3f, 5.0f);
+    [SerializeField] public Vector3 MaxVector = new Vector3(5.0f, 0.3f, 1.0f);
 
     public bool Istargeted { get; set; } = false;
 
