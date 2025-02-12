@@ -2,20 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-enum BulletColor
-{
-    Red, Blue, Black, Green
-}
-
 public class Gun : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
     [SerializeField] private float rotateSpeed = 2.0f;
-
-    [SerializeField] private Material red;
-    [SerializeField] private Material blue;
-    [SerializeField] private Material black;
-    [SerializeField] private Material green;
 
     [SerializeField] private GameObject monster;
     [SerializeField] private List<GameObject> monstersList;
@@ -25,8 +15,6 @@ public class Gun : MonoBehaviour
         private set => monstersList = value;
     }
 
-    private BulletColor color = 0;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,42 +22,8 @@ public class Gun : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
-        // 색깔 바꾸기
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            int num = (int)color;
-
-            if (num == (int)BulletColor.Green)
-            {
-                color = BulletColor.Red;
-            }
-            else
-            {
-                ++num;
-                color = (BulletColor)num;
-            }
-
-            // 임시
-            // 현재 컬러 확인용
-            switch (color)
-            {
-                case BulletColor.Red:
-                    GetComponentsInChildren<MeshRenderer>()[0].sharedMaterial = red;
-                    break;
-                case BulletColor.Blue:
-                    GetComponentsInChildren<MeshRenderer>()[0].sharedMaterial = blue;
-                    break;
-                case BulletColor.Black:
-                    GetComponentsInChildren<MeshRenderer>()[0].sharedMaterial = black;
-                    break;
-                case BulletColor.Green:
-                    GetComponentsInChildren<MeshRenderer>()[0].sharedMaterial = green;
-                    break;
-            }
-        }
-
         // 발사
         // Bullet 생성하면서 위치, 회전, 머테리얼 넣어줌
         if (Input.GetKeyUp(KeyCode.Space))
@@ -78,48 +32,7 @@ public class Gun : MonoBehaviour
 
             newBullet.transform.position = transform.position;
             newBullet.transform.rotation = transform.rotation;
-
-            MeshRenderer meshRenderer = newBullet.GetComponentsInChildren<MeshRenderer>()[0];
-
-            switch(color)
-            {
-                case BulletColor.Red:
-                    meshRenderer.sharedMaterial = red;
-                    break;
-                case BulletColor.Blue:
-                    meshRenderer.sharedMaterial = blue;
-                    break;
-                case BulletColor.Black:
-                    meshRenderer.sharedMaterial = black;
-                    break;
-                case BulletColor.Green:
-                    meshRenderer.sharedMaterial = green;
-                    break;
-            }
         }
-
-        //if (Input.GetKey(KeyCode.RightArrow))
-        //{
-        //    transform.Rotate(new Vector3(0.0f, 90.0f * rotateSpeed * Time.deltaTime, 0.0f));
-        //}
-
-        //if (Input.GetKey(KeyCode.LeftArrow))
-        //{
-        //    transform.Rotate(new Vector3(0.0f, -90.0f * rotateSpeed * Time.deltaTime, 0.0f));
-        //}
-
-        //if (Input.GetKey(KeyCode.UpArrow))
-        //{
-        //    transform.Rotate(new Vector3(-90.0f * rotateSpeed * Time.deltaTime, 0.0f, 0.0f));
-        //}
-
-        //if (Input.GetKey(KeyCode.DownArrow))
-        //{
-        //    transform.Rotate(new Vector3(90.0f * rotateSpeed * Time.deltaTime, 0.0f, 0.0f));
-        //}
-
-
-        // 임시
         // 몬스터 방향 조준
 
         MonstersList = GameObject.FindGameObjectsWithTag("Monster").ToList<GameObject>();
@@ -138,8 +51,6 @@ public class Gun : MonoBehaviour
 
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lerpTime);
         }
-
-        // Quaternion targetRotation = Quaternion.LookRotation(monster.transform.position - transform.position);
 
     }
 
