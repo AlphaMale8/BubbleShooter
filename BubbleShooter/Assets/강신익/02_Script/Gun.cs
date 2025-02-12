@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
     {
-        ballManager = FindAnyObjectByType<BallManager>();
+        
     }
 
     // Update is called once per frame
