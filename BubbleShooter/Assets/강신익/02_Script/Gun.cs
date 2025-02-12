@@ -18,13 +18,19 @@ public class Gun : MonoBehaviour
     [SerializeField] private Material green;
 
     [SerializeField] private GameObject monster;
+    [SerializeField] private List<GameObject> monstersList;
+    public List<GameObject> MonstersList
+    {
+        get => monstersList;
+        private set => monstersList = value;
+    }
 
     private BulletColor color = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -116,15 +122,15 @@ public class Gun : MonoBehaviour
         // 임시
         // 몬스터 방향 조준
 
-        List<GameObject> monsters = GameObject.FindGameObjectsWithTag("Monster").ToList<GameObject>();
+        MonstersList = GameObject.FindGameObjectsWithTag("Monster").ToList<GameObject>();
 
         DistanceComparer distanceComparer = new DistanceComparer();
         distanceComparer.setGun(gameObject);
-        monsters.Sort(distanceComparer);
+        MonstersList.Sort(distanceComparer);
 
-        if (monsters.Count > 0)
+        if (MonstersList.Count > 0)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(monsters.First().transform.position - transform.position);
+            Quaternion targetRotation = Quaternion.LookRotation(MonstersList.First().transform.position - transform.position);
             transform.rotation = targetRotation;
         }
 
