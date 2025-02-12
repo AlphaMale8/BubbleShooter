@@ -5,9 +5,9 @@ using static BallDataSO;
 
 public class BallManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] prefabs;
+    [SerializeField] private GameObject prefab;
     public BallDataSO data;
-
+    
     public List<GameObject> ballList = new List<GameObject>();
     public BallManager Instance = null;
 
@@ -31,17 +31,26 @@ public class BallManager : MonoBehaviour
 
     void CreateBall()
     {
-        GameObject go = Instantiate(prefabs[Random.Range(0, prefabs.Length)]);
+        // Ball Prefab을 생성하고 값 할당하기. Ball에 새로운 프로퍼티를 추가하려면
+        // BallDataSO의 BallFeature 구조체에 프로퍼티 추가해주면 됨.
+        if (prefab != null)
+        {
+            GameObject go = Instantiate(prefab);
 
-        ballList.Add(go);
-        Ball newBall = go.GetComponent<Ball>();
-        newBall.onDisable += () => { RemoveBall(go); };
-        itemFeature _feature = data.feature[Random.Range(0, data.feature.Count)];
-        newBall.Speed = _feature.Speed;
-        newBall.ScaleMod = _feature.ScaleMod;
-        newBall.CameraToBallDestroyDistance = _feature.CameraToBallDestroyDistance;
-        newBall.MinVector = _feature.MinVector;
-        newBall.MaxVector = _feature.MaxVector; 
+            ballList.Add(go);
+            Ball newBall = go.GetComponent<Ball>();
+        
+            // Assign newBall Data
+            BallFeature _feature = data.feature[Random.Range(0, data.feature.Count)];
+            newBall.Speed = _feature.Speed;
+            newBall.ScaleMod = _feature.ScaleMod;
+            newBall.CameraToBallDestroyDistance = _feature.CameraToBallDestroyDistance;
+            newBall.MinVector = _feature.MinVector;
+            newBall.MaxVector = _feature.MaxVector;
+            newBall.InitializeProperty();
+
+            newBall.onDisable += () => { RemoveBall(go); };
+        }
     }
 
     public void RemoveBall(GameObject go)

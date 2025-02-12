@@ -473,7 +473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 0.1
   lerpTime: 0
-  ballManager: {fileID: 0}
+  ballManager: {fileID: 2072779130}
   gun: {fileID: 6221706565102011500, guid: c2470fc7d68374d48b101badc05f815a, type: 3}
 --- !u!114 &649336398
 MonoBehaviour:
@@ -1249,7 +1249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5284f3a7da73117428ac2eae01c37d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs: []
+  prefab: {fileID: 8043631923485576900, guid: a6b5e83e4fbde4b4cbc3027dd4e64588, type: 3}
   data: {fileID: 11400000, guid: 86694bec7dc436d46834ada14b626508, type: 2}
   ballList: []
   Instance: {fileID: 0}

@@ -6,7 +6,7 @@ using UnityEngine;
 public class BallDataSO : ScriptableObject
 {
     [System.Serializable]
-    public struct itemFeature
+    public struct BallFeature
     {
         // Ball의 초기값
         public float Speed;
@@ -16,5 +16,5 @@ public class BallDataSO : ScriptableObject
         public Vector3 MaxVector;
     };
 
-    public List<itemFeature> feature = new List<itemFeature>();
+    public List<BallFeature> feature = new List<BallFeature>();
 }
