@@ -4,8 +4,14 @@ using UnityEngine.UI;
 
 public class CrossHairUI : MonoBehaviour
 {
+    /// <summary>
+    /// 가장 가까운 적을 받기위한 Gun
+    /// </summary>
     private Gun gun;
 
+    /// <summary>
+    /// UI 위치 변환용 recttranform
+    /// </summary>
     private RectTransform crossHairRect;
 
     private void Awake()
