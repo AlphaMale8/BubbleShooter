@@ -7,7 +7,7 @@ public class GunController : MonoBehaviour
 {
     enum GunType
     {
-        AssaultRifle, SniperRifle, Shotgun, MAX
+        AssaultRifle, SniperRifle, Shotgun
     }
 
     [SerializeField] private GameObject assaultRifle;
@@ -17,8 +17,6 @@ public class GunController : MonoBehaviour
     private List<GameObject> guns = new List<GameObject>();
 
     private GunType gunType = GunType.AssaultRifle;
-
-    public testimie[] asdf;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,10 +28,10 @@ public class GunController : MonoBehaviour
         foreach (var g in guns)
         {
             g.transform.localPosition = Vector3.zero;
+            g.SetActive(false);
         }
 
-        guns[(int)GunType.SniperRifle].SetActive(false);
-        guns[(int)GunType.Shotgun].SetActive(false);
+        guns[(int)GunType.AssaultRifle].SetActive(true);
     }
 
     // Update is called once per frame
