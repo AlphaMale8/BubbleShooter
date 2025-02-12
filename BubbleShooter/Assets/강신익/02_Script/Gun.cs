@@ -9,6 +9,7 @@ enum BulletColor
 
 public class Gun : MonoBehaviour
 {
+    public BallManager ballManager;
     [SerializeField] private GameObject bullet;
     [SerializeField] private float rotateSpeed = 2.0f;
 
@@ -20,11 +21,11 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject monster;
 
     private BulletColor color = 0;
-
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnEnable()
     {
-        
+        ballManager = FindAnyObjectByType<BallManager>();
     }
 
     // Update is called once per frame
@@ -115,16 +116,13 @@ public class Gun : MonoBehaviour
 
         // 임시
         // 몬스터 방향 조준
-
-        List<GameObject> monsters = GameObject.FindGameObjectsWithTag("Monster").ToList<GameObject>();
-
         DistanceComparer distanceComparer = new DistanceComparer();
         distanceComparer.setGun(gameObject);
-        monsters.Sort(distanceComparer);
+        ballManager.Instance.ballList.Sort(distanceComparer);
 
-        if (monsters.Count > 0)
+        if (ballManager.Instance.ballList.Count > 0)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(monsters.First().transform.position - transform.position);
+            Quaternion targetRotation = Quaternion.LookRotation(ballManager.Instance.ballList.First().transform.position - transform.position);
 
             float lerpTime = Time.deltaTime / 1.0f;
 

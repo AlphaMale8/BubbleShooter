@@ -121,9 +121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15eeb834e9748f0479ecc59f894d4d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Character: {fileID: 6221706565102011500, guid: c2470fc7d68374d48b101badc05f815a, type: 3}
   MainCamera: {fileID: 0}
-  Speed: 10
+  ballManager: {fileID: 0}
+  Speed: 5
   ScaleMod: 1
   CameraToBallDestroyDistance: 3
-  MinVector: {x: -16, y: 0.3, z: 5}
-  MaxVector: {x: 16, y: 10, z: 1}
+  MinVector: {x: -5, y: 0.3, z: 5}
+  MaxVector: {x: 5, y: 0.3, z: 1}
