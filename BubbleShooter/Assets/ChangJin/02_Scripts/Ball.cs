@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    [SerializeField]
+    public GameObject Character;
     // Ball의 초기값
     public Camera MainCamera;
     [SerializeField]
@@ -29,6 +31,14 @@ public class Ball : MonoBehaviour
         Vector3 dir = (Camera.main.transform.position - transform.position).normalized;
         transform.Translate(dir* Time.deltaTime * Speed);
         if (Vector3.Distance(Camera.main.transform.position, transform.position) <= CameraToBallDestroyDistance)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(Character != null)
         {
             Destroy(gameObject);
         }
