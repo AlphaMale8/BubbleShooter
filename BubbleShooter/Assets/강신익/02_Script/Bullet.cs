@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 정해진 방향으로 날아가기만 함
         transform.Translate(Vector3.forward *speed * Time.deltaTime);
     }
 }
