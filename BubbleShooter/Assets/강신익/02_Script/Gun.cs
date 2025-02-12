@@ -125,7 +125,12 @@ public class Gun : MonoBehaviour
         if (monsters.Count > 0)
         {
             Quaternion targetRotation = Quaternion.LookRotation(monsters.First().transform.position - transform.position);
-            transform.rotation = targetRotation;
+
+            float lerpTime = Time.deltaTime / 1.0f;
+
+            lerpTime += lerpTime * rotateSpeed; // 회전 속도 조절
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lerpTime);
         }
 
         // Quaternion targetRotation = Quaternion.LookRotation(monster.transform.position - transform.position);
