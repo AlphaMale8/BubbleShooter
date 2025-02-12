@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-enum Color
+enum BulletColor
 {
     Red, Blue, Black, Green
 }
@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private GameObject monster;
 
-    private Color color = 0;
+    private BulletColor color = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,30 +35,30 @@ public class Gun : MonoBehaviour
         {
             int num = (int)color;
 
-            if (num == (int)Color.Green)
+            if (num == (int)BulletColor.Green)
             {
-                color = Color.Red;
+                color = BulletColor.Red;
             }
             else
             {
                 ++num;
-                color = (Color)num;
+                color = (BulletColor)num;
             }
 
             // 임시
             // 현재 컬러 확인용
             switch (color)
             {
-                case Color.Red:
+                case BulletColor.Red:
                     GetComponentsInChildren<MeshRenderer>()[0].sharedMaterial = red;
                     break;
-                case Color.Blue:
+                case BulletColor.Blue:
                     GetComponentsInChildren<MeshRenderer>()[0].sharedMaterial = blue;
                     break;
-                case Color.Black:
+                case BulletColor.Black:
                     GetComponentsInChildren<MeshRenderer>()[0].sharedMaterial = black;
                     break;
-                case Color.Green:
+                case BulletColor.Green:
                     GetComponentsInChildren<MeshRenderer>()[0].sharedMaterial = green;
                     break;
             }
@@ -77,16 +77,16 @@ public class Gun : MonoBehaviour
 
             switch(color)
             {
-                case Color.Red:
+                case BulletColor.Red:
                     meshRenderer.sharedMaterial = red;
                     break;
-                case Color.Blue:
+                case BulletColor.Blue:
                     meshRenderer.sharedMaterial = blue;
                     break;
-                case Color.Black:
+                case BulletColor.Black:
                     meshRenderer.sharedMaterial = black;
                     break;
-                case Color.Green:
+                case BulletColor.Green:
                     meshRenderer.sharedMaterial = green;
                     break;
             }
