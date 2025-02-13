@@ -51,16 +51,15 @@ public class Ball : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ballManager.ballList.Remove(gameObject);
-            
+            ballManager.ballList.Remove(gameObject);            
             this.gameObject.SetActive(false);
+            ballManager.Player.Hp -= 100; // 임시 사망
         }
 
         if (other.CompareTag("Bullet"))
         {
             if (health <= 0)
             {
-                print(1234);
                 ballManager.DestroyCount++;
                 ballManager.ballList.Remove(gameObject);
 

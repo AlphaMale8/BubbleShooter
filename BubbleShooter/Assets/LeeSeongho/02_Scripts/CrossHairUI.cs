@@ -7,7 +7,7 @@ public class CrossHairUI : MonoBehaviour
     /// <summary>
     /// 가장 가까운 적을 받기위한 Gun
     /// </summary>
-    private Gun gun;
+    private GunController gunController;
 
     /// <summary>
     /// UI 위치 변환용 recttranform
@@ -16,15 +16,15 @@ public class CrossHairUI : MonoBehaviour
 
     private void Awake()
     {
-        gun = FindAnyObjectByType<Gun>();
+        gunController = FindAnyObjectByType<GunController>();
         crossHairRect = GetComponent<RectTransform>();
     }
 
     private void Update()
     {
-        if(gun.MonstersList.Count > 0)
+        if(gunController.GetTarget() != null)
         {
-            SetCrossHairRectPosition(gun.MonstersList.First().gameObject);
+            SetCrossHairRectPosition(gunController.GetTarget().gameObject);
         }
     }
 

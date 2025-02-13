@@ -17,6 +17,11 @@ public class GunController : MonoBehaviour
     private List<GameObject> guns = new List<GameObject>();
 
     private GunType gunType = GunType.Pistol;
+    
+    /// <summary>
+    /// 현재 총 타입 접근용 프로퍼티
+    /// </summary>
+    public GunType CurrnetGunType { get => gunType; }
 
     public GameObject GetTarget()
     {

@@ -84,6 +84,8 @@ public class SoundManager : MonoBehaviour
 
     public void PlayEffectSound(SoundType type)
     {
+        if (type == SoundType.InGameBGM) return; // BGM이면 무시
+
         int targetIndex = GetEmptyIndex();
         if (targetIndex == -1) return; // 비어있는 소스가 없음
 
