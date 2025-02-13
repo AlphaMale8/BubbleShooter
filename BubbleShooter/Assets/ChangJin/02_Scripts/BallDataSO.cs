@@ -14,6 +14,7 @@ public class BallDataSO : ScriptableObject
         public float CameraToBallDestroyDistance;
         public Vector3 MinVector;
         public Vector3 MaxVector;
+        public int Health;
     };
 
     public List<BallFeature> feature = new List<BallFeature>();

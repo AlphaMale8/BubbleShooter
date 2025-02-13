@@ -56,6 +56,7 @@ public class BallManager : MonoBehaviour
             newBall.CameraToBallDestroyDistance = _feature.CameraToBallDestroyDistance;
             newBall.MinVector = _feature.MinVector;
             newBall.MaxVector = _feature.MaxVector;
+            newBall.health = _feature.Health;
             newBall.InitializeProperty();
 
             newBall.name = $"Ball_{i:00}";

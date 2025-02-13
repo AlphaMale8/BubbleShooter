@@ -52,6 +52,7 @@ MonoBehaviour:
   monster: {fileID: 0}
   monstersList: []
   minimumDistance: 10
+  damage: 1
   bulletNum: 9
 --- !u!1001 &8102257004779104430
 PrefabInstance:

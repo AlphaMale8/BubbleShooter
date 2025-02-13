@@ -24,6 +24,7 @@ public class Pistol : Gun
             newBullet.transform.rotation = transform.rotation;
             Bullet bulletCom = newBullet.GetComponent<Bullet>();
             bulletCom.setBulletSpeed(bulletSpeed);
+            bulletCom.setDamage(damage);
         }
 
         int index = 0;

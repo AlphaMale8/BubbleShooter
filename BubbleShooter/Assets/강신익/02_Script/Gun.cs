@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject monster;
     [SerializeField] protected List<GameObject> monstersList;
     [SerializeField] protected float minimumDistance;
+    [SerializeField] protected int damage;
 
     // private int bulletCount = 30;
     
