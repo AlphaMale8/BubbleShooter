@@ -53,6 +53,10 @@ MonoBehaviour:
   monstersList: []
   minimumDistance: 10
   damage: 1
+  reloadTime: 1
+  maxGauge: 100
+  gaugeSpeed: 10
+  useGauge: 40
   bulletNum: 9
 --- !u!1001 &8102257004779104430
 PrefabInstance:

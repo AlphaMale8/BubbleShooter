@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Shotgun : Gun
@@ -18,38 +19,17 @@ public class Shotgun : Gun
 
         // 발사
         // Bullet 생성하면서 위치, 회전, 머테리얼 넣어줌
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) && reloadTime <= currentTime && currentGauge >= useGauge)
         {
-            float z = 5.0f;
+            List<Vector3> positions = GameObject.Find("BallManager").GetComponent<BallManager>().data.SpawnPosition;
 
-            float x1 = -16.0f;
-            float x2 = 0.0f;
-            float x3 = 16.0f;
-
-            float y1 = 0.3f;
-            float y2 = 7.5f;
-            float y3 = 15.0f;
-
-            Vector3[] dest = 
-            {
-                new Vector3(x1, y1, z),
-                new Vector3(x1, y2, z),
-                new Vector3(x1, y3, z),
-                new Vector3(x2, y1, z),
-                new Vector3(x2, y2, z),
-                new Vector3(x2, y3, z),
-                new Vector3(x3, y1, z),
-                new Vector3(x3, y2, z),
-                new Vector3(x3, y3, z)
-            };
-
-            for (int i = 0; i < dest.Length; ++i)
+            for (int i = 0; i < positions.Count; ++i)
             {
                 GameObject newBullet = Instantiate(bullet);
 
                 newBullet.transform.position = transform.position;
 
-                Quaternion bulletDir = Quaternion.LookRotation(dest[i] - transform.position);
+                Quaternion bulletDir = Quaternion.LookRotation(positions[i] - transform.position);
 
                 newBullet.transform.rotation = bulletDir;
 
@@ -57,6 +37,11 @@ public class Shotgun : Gun
                 Bullet bulletCom = newBullet.GetComponent<Bullet>();
                 bulletCom.setBulletSpeed(bulletSpeed);
                 bulletCom.setDamage(damage);
+                bulletCom.setGunType(GunController.GunType.Shotgun);
+
+                currentTime = 0.0f;
+
+                currentGauge -= useGauge;
             }
         }
 
