@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SniperRifle : Gun
+public class Pistol : Gun
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,7 +21,6 @@ public class SniperRifle : Gun
 
             newBullet.transform.position = transform.position;
             newBullet.transform.rotation = transform.rotation;
-
             Bullet bulletCom = newBullet.GetComponent<Bullet>();
             bulletCom.setBulletSpeed(bulletSpeed);
         }

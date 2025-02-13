@@ -7,23 +7,23 @@ public class GunController : MonoBehaviour
 {
     enum GunType
     {
-        AssaultRifle, SniperRifle, Shotgun, MAX
+        Pistol, SniperRifle, Shotgun, MAX
     }
 
-    [SerializeField] private GameObject assaultRifle;
+    [SerializeField] private GameObject pistol;
     [SerializeField] private GameObject sniperRifle;
     [SerializeField] private GameObject shotgun;
 
     private List<GameObject> guns = new List<GameObject>();
 
-    private GunType gunType = GunType.AssaultRifle;
+    private GunType gunType = GunType.Pistol;
 
     public testimie[] asdf;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        guns.Add(Instantiate(assaultRifle, this.transform));
+        guns.Add(Instantiate(pistol, this.transform));
         guns.Add(Instantiate(sniperRifle, this.transform));
         guns.Add(Instantiate(shotgun, this.transform));
 
@@ -47,7 +47,7 @@ public class GunController : MonoBehaviour
 
             if (num == (int)GunType.Shotgun)
             {
-                gunType = GunType.AssaultRifle;
+                gunType = GunType.Pistol;
             }
             else
             {
@@ -57,13 +57,13 @@ public class GunController : MonoBehaviour
 
             switch (gunType)
             {
-                case GunType.AssaultRifle:
-                    guns[(int)GunType.AssaultRifle].SetActive(true);
-                    guns[(int)GunType.AssaultRifle].transform.rotation = prevTransform.rotation;
+                case GunType.Pistol:
+                    guns[(int)GunType.Pistol].SetActive(true);
+                    guns[(int)GunType.Pistol].transform.rotation = prevTransform.rotation;
                     guns[(int)GunType.Shotgun].SetActive(false);
                     break;
                 case GunType.SniperRifle:
-                    guns[(int)GunType.AssaultRifle].SetActive(false);
+                    guns[(int)GunType.Pistol].SetActive(false);
                     guns[(int)GunType.SniperRifle].SetActive(true);
                     guns[(int)GunType.SniperRifle].transform.rotation = prevTransform.rotation;
                     break;

@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 687398893879294677}
   - component: {fileID: 9143953311622667463}
   m_Layer: 0
-  m_Name: AssaultRifle
+  m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,12 +154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f1eecc185bd8845b332fafb7e96bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballManager: {fileID: 0}
   bullet: {fileID: 8500750412795672547, guid: c45b752e7088793488ddd528aec63880, type: 3}
   rotateSpeed: 2
-  red: {fileID: 0}
-  blue: {fileID: 0}
-  black: {fileID: 0}
-  green: {fileID: 0}
+  bulletSpeed: 100
   monster: {fileID: 0}
   monstersList: []
 --- !u!1 &7453955412338903773

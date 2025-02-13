@@ -5,8 +5,9 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public BallManager ballManager;
-    [SerializeField] private GameObject bullet;
+    [SerializeField] protected GameObject bullet;
     [SerializeField] private float rotateSpeed = 2.0f;
+    [SerializeField] protected float bulletSpeed;
 
     [SerializeField] private GameObject monster;
     [SerializeField] private List<GameObject> monstersList;
