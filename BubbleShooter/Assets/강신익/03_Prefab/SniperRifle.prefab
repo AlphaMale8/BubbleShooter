@@ -264,11 +264,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730c1469472fb8a44a1207491b7cc7c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballManager: {fileID: 0}
   bullet: {fileID: 8500750412795672547, guid: c45b752e7088793488ddd528aec63880, type: 3}
   rotateSpeed: 2
-  red: {fileID: 0}
-  blue: {fileID: 0}
-  black: {fileID: 0}
-  green: {fileID: 0}
+  bulletSpeed: 150
   monster: {fileID: 0}
   monstersList: []
