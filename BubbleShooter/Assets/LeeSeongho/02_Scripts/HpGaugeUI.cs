@@ -69,13 +69,13 @@ public class HpGaugeUI : MonoBehaviour
         }
     }
 
-    private void testInit()
+    protected virtual void testInit()
     {
         SetSliderValue(1);
         maxHealth = 1f;
         currentHealth = maxHealth;
     }
-    private void TestInput()
+    protected virtual void TestInput()
     {
         if(Input.GetKeyDown(KeyCode.Q))
         {
