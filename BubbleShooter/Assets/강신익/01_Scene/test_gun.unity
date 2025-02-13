@@ -291,6 +291,7 @@ MonoBehaviour:
   ballList: []
   ballPool: []
   maxPool: 10
+  isClear: 0
 --- !u!1001 &1561946444
 PrefabInstance:
   m_ObjectHideFlags: 0

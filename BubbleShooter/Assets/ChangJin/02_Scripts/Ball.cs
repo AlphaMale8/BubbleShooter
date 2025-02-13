@@ -7,31 +7,24 @@ public class Ball : MonoBehaviour
 {
     [SerializeField]
     public GameObject Character;
-    // Ball�� �ʱⰪ
+    // Ball의 특성
     [SerializeField]
     public float Speed = 5.0f;
     [SerializeField]
     public float ScaleMod = 1.0f;
     [SerializeField]
     public float CameraToBallDestroyDistance = 3.0f;
-
-    public Vector3 MinVector = new Vector3(-5.0f, 0.3f, 5.0f);
-    public Vector3 MaxVector = new Vector3(5.0f, 0.3f, 1.0f);
-
     public int health = 10;
+
+    public Vector3 SpawnPoint = Vector3.zero;
 
     private BallManager ballManager;
 
-    // Ball�� �ʱ� �� ����
+    // Ball울 초기화하기
     void Start()
     {
         Character = GameObject.FindGameObjectWithTag($"Player");
         ballManager = FindAnyObjectByType<BallManager>();
-        transform.localScale = Vector3.one * ScaleMod;
-        transform.localPosition = new Vector3(
-                    Random.Range(MinVector.x, MaxVector.x),
-                    Random.Range(MinVector.y, MaxVector.y),
-                    Random.Range(MinVector.z, MaxVector.z));
     }
 
     void Update()
@@ -79,9 +72,6 @@ public class Ball : MonoBehaviour
     public void InitializeProperty()
     {
         transform.localScale = Vector3.one * ScaleMod;
-        transform.position = new Vector3(
-            Random.Range(MinVector.x, MaxVector.x),
-            Random.Range(MinVector.y, MaxVector.y),
-            Random.Range(MinVector.z, MaxVector.z));
+        transform.position = SpawnPoint;
     }
 } 
