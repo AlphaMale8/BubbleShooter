@@ -14,7 +14,7 @@ public class BallManager : MonoBehaviour
 
     public BallDataSO data;
 
-    [DoNotSerialize] public static int maxPool = 1;
+    [DoNotSerialize] public static int maxPool = 10;
 
     public List<GameObject> ballList = new List<GameObject>();
     public List<GameObject> ballPool = new List<GameObject>();

@@ -36,7 +36,7 @@ public class Ball : MonoBehaviour
     void Update()
     {
         // Vector3 dir = (Camera.main.transform.position - transform.position).normalized;
-        Vector3 dir = (Character.transform.position - transform.position).normalized;
+        Vector3 dir = ((Character.transform.position + new Vector3(0,4,0)) - transform.position).normalized;
         transform.Translate(dir* Time.deltaTime * Speed, Space.World);
         transform.rotation = Quaternion.LookRotation(dir) ;
         // if (Vector3.Distance(Camera.main.transform.position, transform.position) <= CameraToBallDestroyDistance)
