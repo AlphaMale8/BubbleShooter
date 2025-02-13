@@ -77,8 +77,6 @@ public class SniperRifle : Gun
             bulletCom.setDamage(damage);
             bulletCom.setGunType(GunController.GunType.SniperRifle);
 
-            currentTime = 0.0f;
-
             currentGauge -= useGauge;
         }
     }
