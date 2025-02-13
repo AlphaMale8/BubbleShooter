@@ -10,6 +10,10 @@ using Random = UnityEngine.Random;
 
 public class BallManager : MonoBehaviour
 {
+    private Player player;
+    public Player Player { get => player; }
+    float maxHp = 100;
+
     [SerializeField] private GameObject prefab;
 
     public BallDataSO data;
@@ -24,10 +28,11 @@ public class BallManager : MonoBehaviour
     public Action StageClear;
 
     public GameObject Panel;
-    public Button NextStageButton;
+    public Button NextStageButton; // 패널 버튼
 
     public int currentStageScore = 0;
 
+    private bool isGameEnd = false;
 
     Dictionary<string, int> A  = new Dictionary<string, int>() { 
         { "Stage1", 1 },
@@ -39,13 +44,12 @@ public class BallManager : MonoBehaviour
 
     private void Awake()
     {
-
+        player = FindAnyObjectByType<Player>();
     }
 
     private void Start()
     {
-
-        //Panel = GameObject.Find("Panel");
+        isGameEnd = false;
         Panel.SetActive(false);
 
         print(SceneManager.GetActiveScene().name);
@@ -58,19 +62,59 @@ public class BallManager : MonoBehaviour
                 TargetSceneName = "Stage3";
                 break;
             case 3:
-                TargetSceneName = "End";
+                TargetSceneName = "Title";
                 break;
             default:
                 break;
         }
+
         if(NextStageButton != null)
             NextStageButton.onClick.AddListener(LoadScene);
+
+        player.Hp = maxHp;        
     }
     private void Update()
     {
-        if(ballList.Count <= 0)
+        if (!isGameEnd && player.Hp <= 0)
         {
+            isGameEnd = true;
+            player.Hp = 0;
+
+            // 패배
             Panel.SetActive(true);
+            Time.timeScale = 0f;
+
+            PanelUI ui = Panel.GetComponentInChildren<PanelUI>();
+            ui.SetTitleText("Defeat . . .", Color.red);
+            ui.SetStageScoreText(DestroyCount);
+            ui.SetTotalScoreText(PlayerPrefs.GetInt("Score"));
+
+            if (NextStageButton != null)
+                NextStageButton.onClick.AddListener(() => { SceneManager.LoadScene("Title");  Time.timeScale = 1f;  });
+        }
+
+        if(!isGameEnd && ballList.Count <= 0 && player.Hp > 0f) // 몬스터 개수 0, 플레이어가 생존일때
+        {
+            isGameEnd = true;
+            // 승리
+            Panel.SetActive(true);
+            
+            // UI 표시
+            PanelUI ui = Panel.GetComponentInChildren<PanelUI>();
+            ui.SetTitleText("Victory", Color.green);
+            ui.SetStageScoreText(DestroyCount);
+
+            int currentTotalScore = PlayerPrefs.GetInt("Score");
+            PlayerPrefs.SetInt("Score", currentTotalScore + DestroyCount);
+
+            if(A[SceneManager.GetActiveScene().name] == 3) // 최종 스테이지 일 때
+            {
+                ui.SetTotalScoreText(PlayerPrefs.GetInt("Score"));
+            }
+            else
+            {
+                ui.SetTotalScoreText();
+            }
         }
     }
 
@@ -132,9 +176,10 @@ public class BallManager : MonoBehaviour
         }
     }
 
+    // 버튼 이벤트 함수 ===============================================
+
     void LoadScene()
     {
-
         SceneManager.LoadScene(TargetSceneName);
     }
 }

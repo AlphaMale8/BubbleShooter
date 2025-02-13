@@ -58,8 +58,6 @@ public class GameManager : MonoBehaviour
     {
         //stageScoreText = GameObject.FindGameObjectWithTag("StageScoreText").GetComponent<TMP_Text>();
         //totalScoreText = GameObject.FindGameObjectWithTag("TotalScoreText").GetComponent<TMP_Text>();
-
-        Debug.Log(PlayerPrefs.GetInt("key"));
     }
 
     private void OnEnable()
@@ -75,6 +73,7 @@ public class GameManager : MonoBehaviour
         ballManager.StageClear += () =>
         {
             panel.SetActive(true); // x
+            // ÆÐ¹è
         };
     }
 

@@ -2,6 +2,20 @@ using UnityEngine;
 
 public class BulletGaugeUI : HpGaugeUI
 {
+    private GunController gc;
+
+    private void Awake()
+    {
+        gc = FindAnyObjectByType<GunController>();
+    }
+
+    private void Update()
+    {
+        if (gc == null) return;
+
+        SetSliderValue(gc.GetGauge());
+    }
+
 #if UNITY_EDITOR
     float maxBullet = 30;
 

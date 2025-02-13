@@ -10,6 +10,11 @@ public class PanelUI : MonoBehaviour
     private TextMeshProUGUI titleText;
 
     /// <summary>
+    /// 현재 스테이지 스코어 표시용 텍스트
+    /// </summary>
+    private TextMeshProUGUI stageScoreText;
+
+    /// <summary>
     /// 최종 스코어 표시용 텍스트
     /// </summary>
     private TextMeshProUGUI totalScoreText;
@@ -25,9 +30,12 @@ public class PanelUI : MonoBehaviour
         titleText = child.GetComponent<TextMeshProUGUI>();
 
         child = transform.GetChild(1);
-        totalScoreText = child.GetComponent<TextMeshProUGUI>();
+        stageScoreText = child.GetComponent<TextMeshProUGUI>();
 
         child = transform.GetChild(2);
+        totalScoreText = child.GetComponent<TextMeshProUGUI>();
+
+        child = transform.GetChild(3);
         button = child.GetComponent<Button>();
     }
 
@@ -57,6 +65,19 @@ public class PanelUI : MonoBehaviour
     {
         titleText.text = $"{str}";
         titleText.color = color;
+    }
+
+    public void SetStageScoreText(int value)
+    {
+        stageScoreText.text = $"Stage Score : {value}";
+    }
+
+    /// <summary>
+    /// 비어있는 텍스트 설정 함수
+    /// </summary>
+    public void SetTotalScoreText()
+    {
+        totalScoreText.text = "";
     }
 
     public void SetTotalScoreText(int value)
