@@ -50,17 +50,7 @@ public class BallManager : MonoBehaviour
         {
             GameObject go = Instantiate(prefab);
             Ball newBall = go.GetComponent<Ball>();
-            BallFeature _feature = data.feature[Random.Range(0, data.feature.Count)];
-            Vector3 spawnPoint = data.SpawnPosition[Random.Range(0, data.SpawnPosition.Count)];
-
-            newBall.Speed = _feature.Speed;
-            newBall.ScaleMod = _feature.ScaleMod;
-            newBall.CameraToBallDestroyDistance = _feature.CameraToBallDestroyDistance;
-            newBall.SpawnPoint = spawnPoint;
-            newBall.health = _feature.Health;
-            GameObject gg = Instantiate(_feature.NormalMesh);
-            gg.transform.SetParent(go.transform,false);
-            newBall.InitializeProperty();
+            newBall.InitializeProperty(data.feature[Random.Range(0, data.feature.Count)], data.SpawnPosition[Random.Range(0, data.SpawnPosition.Count)]);
             
 
             newBall.name = $"Ball_{i:00}";
