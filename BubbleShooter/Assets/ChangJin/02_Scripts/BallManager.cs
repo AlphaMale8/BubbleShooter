@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,35 +14,71 @@ public class BallManager : MonoBehaviour
 
     public BallDataSO data;
 
-    [HideInInspector] public BallManager Instance;
-
-    public Button CreateButton;
+    [DoNotSerialize] public static int maxPool = 1;
 
     public List<GameObject> ballList = new List<GameObject>();
     public List<GameObject> ballPool = new List<GameObject>();
 
-    public int maxPool = 10;
     public int DestroyCount { get; set; } = 0;
 
-    public bool isClear = false;    
+    public Action StageClear;
+
+    public GameObject Panel;
+    public Button NextStageButton;
+
+    public int currentStageScore = 0;
+
+
+    Dictionary<string, int> A  = new Dictionary<string, int>() { 
+        { "Stage1", 1 },
+        { "Stage2", 2 },
+        { "Stage3", 3 },
+    };
+
+    private string TargetSceneName;
 
     private void Awake()
     {
-        if (Instance == null)
+
+    }
+
+    private void Start()
+    {
+
+        Panel = GameObject.Find("Panel");
+        Panel.SetActive(false);
+
+        print(SceneManager.GetActiveScene().name);
+        switch (A[SceneManager.GetActiveScene().name])
         {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            case 1:
+                TargetSceneName = "Stage2";
+                break;
+            case 2:
+                TargetSceneName = "Stage3";
+                break;
+            case 3:
+                TargetSceneName = "End";
+                break;
+            default:
+                break;
         }
-        else if (Instance != this)
+        if(NextStageButton != null)
+            NextStageButton.onClick.AddListener(LoadScene);
+    }
+    private void Update()
+    {
+        if(ballList.Count <= 0)
         {
-            Destroy(this.gameObject);
+            Panel.SetActive(true);
         }
     }
 
-    void Start()
+    private void OnEnable()
     {
         CreateBallPool();
         StartCoroutine(CreateBall());
+        StartCoroutine(AllBallWasted());
     }
 
     private void CreateBallPool()
@@ -51,17 +88,14 @@ public class BallManager : MonoBehaviour
             GameObject go = Instantiate(prefab);
             Ball newBall = go.GetComponent<Ball>();
             newBall.InitializeProperty(data.feature[Random.Range(0, data.feature.Count)], data.SpawnPosition[Random.Range(0, data.SpawnPosition.Count)]);
-            
+
 
             newBall.name = $"Ball_{i:00}";
             go.SetActive(false);
             ballPool.Add(go);
             ballList.Add(go);
-        }
 
-        if (!isClear && ballList.Count == 0)
-        {
-            isClear = true;
+            print(ballList.Count);
         }
     }
 
@@ -71,7 +105,6 @@ public class BallManager : MonoBehaviour
 
         while (true)
         {
-            // 난수 발생
             foreach (var ball in ballList)
             {
                 if (ball.activeSelf == false)
@@ -85,5 +118,23 @@ public class BallManager : MonoBehaviour
         }
     }
 
+    IEnumerator AllBallWasted()
+    {
+        while (true)
+        {
+            if (ballList.Count == 0)
+            {
+                StageClear?.Invoke(); // x
+                break;
+            }
 
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    void LoadScene()
+    {
+
+        SceneManager.LoadScene(TargetSceneName);
+    }
 }

@@ -10,6 +10,9 @@ TagManager:
   - StageScoreText
   - TotalScoreText
   - Bullet
+  - Panel
+  - BallManager
+  - ExitButton
   layers:
   - Default
   - TransparentFX

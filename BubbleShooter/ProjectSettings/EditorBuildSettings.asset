@@ -6,13 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: "Assets/\uAC15\uC2E0\uC775/01_Scene/test_gun.unity"
-    guid: 600545634bf9a2a45b210a1b9a546c9e
-    path: Assets/Main/Stage1.unity
-    guid: e503cc7c6dd1d9e41b898f857c408c8c
+    path: Assets/Main/Title.unity
+    guid: 1f4df7d008199bd4bbaa692412e3bc3b
   - enabled: 1
-    path: Assets/Main/ClearScene.unity
-    guid: 399c09da2151a9d44aa20146f1e4c116
+    path: Assets/Main/Stage1.unity
+    guid: ba273ff17451e2d44984d0e374692fac
+  - enabled: 1
+    path: Assets/Main/Stage2.unity
+    guid: 264c64f50c709e54381e96fe30156fd5
+  - enabled: 1
+    path: Assets/Main/Stage3.unity
+    guid: f3db43b1991ff904baff8728a49a325a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
