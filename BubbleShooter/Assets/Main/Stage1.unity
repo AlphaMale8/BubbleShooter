@@ -261,6 +261,7 @@ Transform:
   - {fileID: 1331197532}
   - {fileID: 1009443174}
   - {fileID: 508028200}
+  - {fileID: 346059544}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &87480281
@@ -432,6 +433,10 @@ PrefabInstance:
     - target: {fileID: 8633695694182410521, guid: d24633db81845e942bee1971afdc625c, type: 3}
       propertyPath: m_Name
       value: EndPanelUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633695694182410521, guid: d24633db81845e942bee1971afdc625c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
