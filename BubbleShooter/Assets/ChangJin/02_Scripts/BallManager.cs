@@ -45,7 +45,7 @@ public class BallManager : MonoBehaviour
     private void Start()
     {
 
-        Panel = GameObject.Find("Panel");
+        //Panel = GameObject.Find("Panel");
         Panel.SetActive(false);
 
         print(SceneManager.GetActiveScene().name);
