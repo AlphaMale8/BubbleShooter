@@ -13,19 +13,66 @@ public class Gun : MonoBehaviour
     [SerializeField] protected List<GameObject> monstersList;
     [SerializeField] protected float minimumDistance;
     [SerializeField] protected int damage;
+    [SerializeField] protected float reloadTime;
+    protected float currentTime = 0;
+    [SerializeField] protected float maxGauge;
+    protected float currentGauge;
+    [SerializeField] protected float gaugeSpeed;
+    [SerializeField] protected float useGauge;
 
-    // private int bulletCount = 30;
-    
     public List<GameObject> MonstersList
     {
         get => monstersList;
         private set => monstersList = value;
     }
 
+    public void setCurrentTime(float currentTime)
+    {
+        this.currentTime = currentTime;
+    }
+
+    public float getReloadTime()
+    {
+        return this.reloadTime;
+    }
+
+    public float getCurrentTime()
+    {
+        return this.currentTime;
+    }
+
+    public float getMaxGauge()
+    {
+        return this.maxGauge;
+    }
+
+    public float getCurrentGauge()
+    {
+        return this.currentGauge;
+    }
+
+    private void Start()
+    {
+        currentGauge = maxGauge;
+    }
+
     // Update is called once per frame
     protected void Update()
     {
+        print("gauge: " + currentGauge + "/" + maxGauge);
         MonstersList = GameObject.FindGameObjectsWithTag("Monster").ToList<GameObject>();
+    }
+    public void UpdateTime()
+    {
+        if (reloadTime > currentTime)
+        {
+            currentTime += Time.deltaTime;
+        }
+
+        if (maxGauge > currentGauge)
+        {
+            currentGauge += gaugeSpeed * Time.deltaTime;
+        }
     }
 
     protected class DistanceComparer : Comparer<GameObject>

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    enum GunType
+    public enum GunType
     {
         Pistol, SniperRifle, Shotgun, MAX
     }
@@ -25,10 +25,10 @@ public class GunController : MonoBehaviour
         guns.Add(Instantiate(sniperRifle, this.transform));
         guns.Add(Instantiate(shotgun, this.transform));
 
-        foreach (var g in guns)
+        for (int i = 0; i < (int)GunType.MAX; ++i)
         {
-            g.transform.localPosition = Vector3.zero;
-            g.SetActive(false);
+            guns[i].transform.localPosition = Vector3.zero;
+            guns[i].SetActive(false);
         }
 
         guns[(int)GunType.Pistol].SetActive(true);
@@ -37,6 +37,11 @@ public class GunController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        for (int i = 0; i < (int)GunType.MAX; ++i)
+        {
+            guns[i].GetComponent<Gun>().UpdateTime();
+        }
+
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
             int num = (int)gunType;

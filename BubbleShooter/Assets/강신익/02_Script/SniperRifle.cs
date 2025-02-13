@@ -16,7 +16,7 @@ public class SniperRifle : Gun
 
         // 발사
         // Bullet 생성하면서 위치, 회전, 머테리얼 넣어줌
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) && reloadTime < currentTime && currentGauge > useGauge)
         {
             GameObject newBullet = Instantiate(bullet);
 
@@ -26,6 +26,11 @@ public class SniperRifle : Gun
             Bullet bulletCom = newBullet.GetComponent<Bullet>();
             bulletCom.setBulletSpeed(bulletSpeed);
             bulletCom.setDamage(damage);
+            bulletCom.setGunType(GunController.GunType.SniperRifle);
+
+            currentTime = 0.0f;
+
+            currentGauge -= useGauge;
         }
 
         int index = 0;

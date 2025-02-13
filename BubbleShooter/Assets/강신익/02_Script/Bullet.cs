@@ -4,6 +4,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 10.0f;
     private int damage;
+    private GunController.GunType gunType;
 
     public void setBulletSpeed(float bulletSpeed)
     {
@@ -13,6 +14,11 @@ public class Bullet : MonoBehaviour
     public void setDamage(int damage)
     {
         this.damage = damage;
+    }
+
+    public void setGunType(GunController.GunType gunType)
+    {
+        this.gunType = gunType;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,7 +43,10 @@ public class Bullet : MonoBehaviour
             Ball ball = other.gameObject.GetComponent<Ball>();
             ball.health -= 3;
 
-            Destroy(gameObject);
+            if (gunType != GunController.GunType.SniperRifle)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
