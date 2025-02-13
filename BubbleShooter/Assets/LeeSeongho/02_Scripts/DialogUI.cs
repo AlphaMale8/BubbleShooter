@@ -17,6 +17,7 @@ public class DialogUI : MonoBehaviour
 
     private void Start()
     {
+        DisalbleCanvas();
 #if UNITY_EDITOR
         testInit();
 #endif

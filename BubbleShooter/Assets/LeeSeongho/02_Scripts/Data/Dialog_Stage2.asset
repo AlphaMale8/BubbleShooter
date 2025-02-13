@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda3c591c9b3ced4c8bd6fc63154bf32, type: 3}
   m_Name: Dialog_Stage2
   m_EditorClassIdentifier: 
-  content: 
+  content: "<color=\"Green\">(\uD1A0\uC774)</color>  \uC27D\uAC8C \uB5A0\uB098\uBC84\uB9AC\uB294
+    \uBC84\uBE14\uC5D0\uAC8C \uC6B0\uB9AC\uC758 \uD130\uC804\uC744 \uB118\uAE38 \uC218
+    \uC5C6\uC5B4! "
