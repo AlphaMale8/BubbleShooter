@@ -14,8 +14,6 @@ public class Gun : MonoBehaviour
     [SerializeField] protected List<GameObject> monstersList;
     [SerializeField] protected float minimumDistance;
     [SerializeField] protected int damage;
-    [SerializeField] protected float reloadTime;
-    protected float currentTime = 0;
     [SerializeField] protected float maxGauge;
     protected float currentGauge;
     [SerializeField] protected float gaugeSpeed;
@@ -32,20 +30,6 @@ public class Gun : MonoBehaviour
         return currentGauge / maxGauge;
     }
 
-    public void setCurrentTime(float currentTime)
-    {
-        this.currentTime = currentTime;
-    }
-
-    public float getReloadTime()
-    {
-        return this.reloadTime;
-    }
-
-    public float getCurrentTime()
-    {
-        return this.currentTime;
-    }
 
     public float getMaxGauge()
     {
@@ -70,11 +54,6 @@ public class Gun : MonoBehaviour
     }
     public void UpdateTime()
     {
-        if (reloadTime > currentTime)
-        {
-            currentTime += Time.deltaTime;
-        }
-
         if (maxGauge > currentGauge)
         {
             currentGauge += gaugeSpeed * Time.deltaTime;

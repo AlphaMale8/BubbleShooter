@@ -46,9 +46,6 @@ public class Shotgun : Gun
                 bulletCom.setBulletSpeed(bulletSpeed);
                 bulletCom.setDamage(damage);
                 bulletCom.setGunType(GunController.GunType.Shotgun);
-
-                currentTime = 0.0f;
-
             }
 
             currentGauge -= useGauge;

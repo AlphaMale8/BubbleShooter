@@ -74,8 +74,6 @@ public class Pistol : Gun
             bulletCom.setDamage(damage);
             bulletCom.setGunType(GunController.GunType.Pistol);
 
-            currentTime = 0.0f;
-
             currentGauge -= useGauge;
         }
     }
