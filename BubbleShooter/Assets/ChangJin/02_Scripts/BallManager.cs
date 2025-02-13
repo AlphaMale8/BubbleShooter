@@ -21,6 +21,9 @@ public class BallManager : MonoBehaviour
     public List<GameObject> ballPool = new List<GameObject>();
 
     public int maxPool = 10;
+    public int DestroyCount { get; set; } = 0;
+
+    public bool isClear = false;    
 
     private void Awake()
     {
@@ -35,12 +38,10 @@ public class BallManager : MonoBehaviour
         }
     }
 
-
     void Start()
     {
         CreateBallPool();
         StartCoroutine(CreateBall());
-        SceneManager.LoadScene(1);
     }
 
     private void CreateBallPool()
@@ -62,6 +63,11 @@ public class BallManager : MonoBehaviour
             go.SetActive(false);
             ballPool.Add(go);
             ballList.Add(go);
+        }
+
+        if (!isClear && ballList.Count == 0)
+        {
+            isClear = true;
         }
     }
 
@@ -87,47 +93,3 @@ public class BallManager : MonoBehaviour
 
 
 }
-
-//using System;
-//using System.Collections.Generic;
-//using UnityEngine;
-//using UnityEngine.UI;
-//using Random = UnityEngine.Random;
-
-//public class BallManager : MonoBehaviour
-//{
-//    [SerializeField] private GameObject[] prefabs;
-
-//    public BallManager Instance;
-
-//    public Button CreateButton;
-
-//    public List<GameObject> BallList { get; } = new List<GameObject>();
-
-//    private void Awake()
-//    {
-//        if (Instance == null)
-//        {
-//            Instance = this;
-//            DontDestroyOnLoad(Instance);
-//        }
-//        else if (Instance != this)
-//        {
-//            Destroy(this);
-//        }
-//    }
-
-//    void Start()
-//    {
-//        if (CreateButton != null)
-//        {
-//            Button btn = CreateButton.GetComponent<Button>();
-//            btn.onClick.AddListener(CreateBall);
-//        }
-//    }
-
-//    void CreateBall()
-//    {
-//        BallList.Add(Instantiate(prefabs[Random.Range(0, prefabs.Length)]));
-//    }
-//}

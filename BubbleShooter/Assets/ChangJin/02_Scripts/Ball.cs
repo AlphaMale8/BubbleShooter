@@ -49,8 +49,15 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        print(1234);
+
+        if (other.CompareTag("Player") || other.CompareTag("Bullet"))
         {
+            if (other.CompareTag("Bullet"))
+            {
+                ballManager.Instance.DestroyCount++;
+            }
+
             ballManager.Instance.ballList.Remove(gameObject);
             
             this.gameObject.SetActive(false);
