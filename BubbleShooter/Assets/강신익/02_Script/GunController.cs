@@ -18,6 +18,22 @@ public class GunController : MonoBehaviour
 
     private GunType gunType = GunType.Pistol;
 
+    public GameObject GetTarget()
+    {
+        List<GameObject> monsterList = guns[(int)gunType].GetComponent<Gun>().MonstersList;
+        if (monsterList.Count > 0)
+        {
+            return monsterList[0];
+        }
+
+        return null;
+    }
+
+    public float GetGauge()
+    {
+        return guns[(int)gunType].GetComponent<Gun>().getGauge();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

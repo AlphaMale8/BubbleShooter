@@ -27,6 +27,11 @@ public class Gun : MonoBehaviour
         private set => monstersList = value;
     }
 
+    public float getGauge()
+    {
+        return currentGauge / maxGauge;
+    }
+
     public void setCurrentTime(float currentTime)
     {
         this.currentTime = currentTime;
@@ -60,7 +65,7 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        //print("gauge: " + currentGauge + "/" + maxGauge);
+        print("gauge: " + currentGauge + "/" + maxGauge);
         MonstersList = GameObject.FindGameObjectsWithTag("Monster").ToList<GameObject>();
     }
     public void UpdateTime()
