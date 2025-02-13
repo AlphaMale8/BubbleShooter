@@ -45,10 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90fdf4f578fb3940806fcc93839af46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballManager: {fileID: 0}
   bullet: {fileID: 8500750412795672547, guid: c45b752e7088793488ddd528aec63880, type: 3}
   rotateSpeed: 2
+  bulletSpeed: 50
   monster: {fileID: 0}
   monstersList: []
+  bulletNum: 10
 --- !u!1001 &8102257004779104430
 PrefabInstance:
   m_ObjectHideFlags: 0

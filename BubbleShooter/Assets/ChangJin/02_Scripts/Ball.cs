@@ -15,13 +15,11 @@ public class Ball : MonoBehaviour
     [SerializeField]
     public float CameraToBallDestroyDistance = 3.0f;
 
-    [SerializeField] private Vector3 MinVector = new Vector3(-16.0f, 0.3f, 5.0f);
-    [SerializeField] private Vector3 MaxVector = new Vector3(16.0f, 0.3f, 1.0f);
-    
+    public Vector3 MinVector = new Vector3(-5.0f, 0.3f, 5.0f);
+    public Vector3 MaxVector = new Vector3(5.0f, 0.3f, 1.0f);
+
     private BallManager ballManager;
 
-    private Action RemoveList;
-    
     // Ball�� �ʱ� �� ����
     void Start()
     {
@@ -51,8 +49,17 @@ public class Ball : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            ballManager.Instance.BallList.Remove(gameObject);
-            Destroy(gameObject);
+            ballManager.Instance.ballList.Remove(gameObject);
+            this.gameObject.SetActive(false);
         }
+    }
+
+    public void InitializeProperty()
+    {
+        transform.localScale = Vector3.one * ScaleMod;
+        transform.position = new Vector3(
+            Random.Range(MinVector.x, MaxVector.x),
+            Random.Range(MinVector.y, MaxVector.y),
+            Random.Range(MinVector.z, MaxVector.z));
     }
 } 

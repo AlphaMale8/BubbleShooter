@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128bb09e460265a4e84de720bc621744, type: 3}
   m_Name: gun_aaaa
   m_EditorClassIdentifier: 
-  gunName: 
-  dmg: 0
+  gunName: asdf
+  dmg: 11
