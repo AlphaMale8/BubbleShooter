@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 10.0f;
     private int damage;
-    private GunController.GunType gunType;
+    private GunController.GunType CurrnetGunType;
     private GameObject monster;
     private float destroyTime = 5f;
 
@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
 
     public void setGunType(GunController.GunType gunType)
     {
-        this.gunType = gunType;
+        this.CurrnetGunType = gunType;
     }
 
     public void setMonster(GameObject monster)
@@ -62,7 +62,7 @@ public class Bullet : MonoBehaviour
             Ball ball = other.gameObject.GetComponent<Ball>();
             ball.health -= damage;
 
-            if (gunType != GunController.GunType.SniperRifle)
+            if (CurrnetGunType != GunController.GunType.SniperRifle)
             {
                 Destroy(gameObject);
             }

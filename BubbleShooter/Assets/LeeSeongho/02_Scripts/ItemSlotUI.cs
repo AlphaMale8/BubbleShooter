@@ -1,17 +1,28 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
+using static GunController;
 
 public class ItemSlotUI : MonoBehaviour
 {
+    public Sprite[] imageDatas;
+
     Image itemImage;
+    GunController gc;
 
     private void Awake()
     {
         itemImage = GetComponent<Image>();  
+        gc = FindAnyObjectByType<GunController>();
     }
 
     private void Start()
     {
+        gc.OnGunChange += (index) => 
+        {
+            SetItemSlotImage(index);
+        };
+
 #if UNITY_EDITOR
         testInit();
 #endif
@@ -24,36 +35,35 @@ public class ItemSlotUI : MonoBehaviour
 #endif
     }
 
-    public void SetItemSlotImage(Sprite itemSprite)
+    public void SetItemSlotImage(int index)
     {
-        itemImage.sprite = itemSprite;
+        itemImage.sprite = imageDatas[index];
     }
 
 #if UNITY_EDITOR
 
     [Tooltip("아이템 테스트 이미지")]
-    public Sprite[] testImg;
 
     private void testInit()
     {
-        SetItemSlotImage(null);
+        SetItemSlotImage(0);
     }
 
     private void TestInput()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            SetItemSlotImage(testImg[0]);
+            SetItemSlotImage(0);
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            SetItemSlotImage(testImg[1]);
+            SetItemSlotImage(1);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            SetItemSlotImage(null);
+            SetItemSlotImage(0);
         }
     }
 #endif

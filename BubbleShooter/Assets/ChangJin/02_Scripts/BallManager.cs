@@ -15,12 +15,12 @@ public class BallManager : MonoBehaviour
     private Player player;
     public Player Player { get => player; }
     float maxHp = 100;
-
+    
     [SerializeField] private GameObject prefab;
 
     // data
     public BallDataSO data;
-    [DoNotSerialize] public static int maxPool = 1;
+    [DoNotSerialize] public static int maxPool = 20;
 
     public List<GameObject> ballList = new List<GameObject>();
     public List<GameObject> ballPool = new List<GameObject>();
@@ -101,37 +101,23 @@ public class BallManager : MonoBehaviour
             player.animator.SetTrigger("IsDead");
 
             StopAllCoroutines();
-            StartCoroutine(deadProcess());
+            StartCoroutine(DeadProcess());
         }
 
         if(!isGameEnd && ballList.Count <= 0 && player.Hp > 0f) // 몬스터 개수 0, 플레이어가 생존일때
         {
             isGameEnd = true;
-            // 승리
-            Panel.SetActive(true);
 
+            // 승리
             player.animator.SetBool("IsVictory", true);
 
             // UI 표시
-            PanelUI ui = Panel.GetComponentInChildren<PanelUI>();
-            ui.SetTitleText("Victory", Color.green);
-            ui.SetStageScoreText(DestroyCount);
-
-            int currentTotalScore = PlayerPrefs.GetInt("Score");
-            PlayerPrefs.SetInt("Score", currentTotalScore + DestroyCount);
-
-            if(A[SceneManager.GetActiveScene().name] == 3) // 최종 스테이지 일 때
-            {
-                ui.SetTotalScoreText(PlayerPrefs.GetInt("Score"));
-            }
-            else
-            {
-                ui.SetTotalScoreText();
-            }
+            StopAllCoroutines();
+            StartCoroutine(VictoryProcess());
         }
     }
 
-    private IEnumerator deadProcess()
+    private IEnumerator DeadProcess()
     {
         float timeElapsed = 0;
         while(timeElapsed < maxTimer)
@@ -147,9 +133,40 @@ public class BallManager : MonoBehaviour
         ui.SetTitleText("Defeat . . .", Color.red);
         ui.SetStageScoreText(DestroyCount);
         ui.SetTotalScoreText(PlayerPrefs.GetInt("Score"));
+        ui.SetPanelImage(0);
 
         if (NextStageButton != null)
             NextStageButton.onClick.AddListener(() => { SceneManager.LoadScene("Title"); Time.timeScale = 1f; player.animator.SetBool("IsDead", false); });
+    }
+
+    private IEnumerator VictoryProcess()
+    {
+        float timeElapsed = 0;
+        while (timeElapsed < maxTimer)
+        {
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        Panel.SetActive(true);
+        PanelUI ui = Panel.GetComponentInChildren<PanelUI>();
+        ui.SetTitleText("Victory", Color.green);
+        ui.SetStageScoreText(DestroyCount);
+        //ui.SetButtonText("Continue");
+        ui.SetPanelImage(1);
+
+        int currentTotalScore = PlayerPrefs.GetInt("Score");
+        PlayerPrefs.SetInt("Score", currentTotalScore + DestroyCount);
+
+        if (A[SceneManager.GetActiveScene().name] == 3) // 최종 스테이지 일 때
+        {
+            ui.SetTotalScoreText(PlayerPrefs.GetInt("Score"));
+            //ui.SetButtonText();
+        }
+        else
+        {
+            ui.SetTotalScoreText();
+        }
     }
 
     private void OnEnable()

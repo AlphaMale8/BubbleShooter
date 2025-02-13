@@ -19,6 +19,7 @@ public class ScoreUI : MonoBehaviour
 
     private void Start()
     {
+        SetScoreText(0);
         manager.OnStageScoreChange += SetScoreText;
 #if UNITY_EDITOR
         testInit();

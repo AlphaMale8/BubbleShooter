@@ -55,7 +55,7 @@ MonoBehaviour:
   damage: 4
   maxGauge: 100
   gaugeSpeed: 15
-  useGauge: 30
+  useGauge: 12
 --- !u!1001 &4549147146306586475
 PrefabInstance:
   m_ObjectHideFlags: 0

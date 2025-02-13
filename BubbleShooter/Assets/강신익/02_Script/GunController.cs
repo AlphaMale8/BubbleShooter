@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class GunController : MonoBehaviour
 {
@@ -21,11 +22,21 @@ public class GunController : MonoBehaviour
     /// <summary>
     /// 현재 총 타입 접근용 프로퍼티
     /// </summary>
-    public GunType CurrnetGunType { get => gunType; }
+    public GunType CurrnetGunType 
+    { 
+        get => gunType; 
+        set
+        {
+            gunType = value;
+            OnGunChange?.Invoke((int)gunType);
+        }
+    }
+
+    public Action<int> OnGunChange;
 
     public GameObject GetTarget()
     {
-        List<GameObject> monsterList = guns[(int)gunType].GetComponent<Gun>().MonstersList;
+        List<GameObject> monsterList = guns[(int)CurrnetGunType].GetComponent<Gun>().MonstersList;
         if (monsterList.Count > 0)
         {
             return monsterList[0];
@@ -36,7 +47,7 @@ public class GunController : MonoBehaviour
 
     public float GetGauge()
     {
-        return guns[(int)gunType].GetComponent<Gun>().getGauge();
+        return guns[(int)CurrnetGunType].GetComponent<Gun>().getGauge();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -65,7 +76,7 @@ public class GunController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            int num = (int)gunType;
+            int num = (int)CurrnetGunType;
 
             print(num);
 
@@ -73,15 +84,15 @@ public class GunController : MonoBehaviour
 
             if (num == (int)GunType.Shotgun)
             {
-                gunType = GunType.Pistol;
+                CurrnetGunType = GunType.Pistol;
             }
             else
             {
                 ++num;
-                gunType = (GunType)num;
+                CurrnetGunType = (GunType)num;
             }
 
-            switch (gunType)
+            switch (CurrnetGunType)
             {
                 case GunType.Pistol:
                     guns[(int)GunType.Pistol].SetActive(true);

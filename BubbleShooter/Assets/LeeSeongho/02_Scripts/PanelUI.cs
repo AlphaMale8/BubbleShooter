@@ -5,6 +5,16 @@ using UnityEngine.UI;
 public class PanelUI : MonoBehaviour
 {
     /// <summary>
+    /// 이미지 데이터 저쟝용 배열
+    /// </summary>
+    public Sprite[] imageDatas;
+
+    /// <summary>
+    /// 패널 이미지
+    /// </summary>
+    private Image panelImage;
+
+    /// <summary>
     /// 표시용 타이틀 텍스트
     /// </summary>
     private TextMeshProUGUI titleText;
@@ -24,8 +34,15 @@ public class PanelUI : MonoBehaviour
     /// </summary>
     private Button button;
 
+    /// <summary>
+    /// 버튼 텍스트
+    /// </summary>
+    private TextMeshProUGUI buttonText;
+
     private void Awake()
-    {       
+    {
+        panelImage = GetComponent<Image>(); 
+
         Transform child = transform.GetChild(0);
         titleText = child.GetComponent<TextMeshProUGUI>();
 
@@ -37,6 +54,8 @@ public class PanelUI : MonoBehaviour
 
         child = transform.GetChild(3);
         button = child.GetComponent<Button>();
+
+        buttonText = child.GetChild(0).GetComponent<TextMeshProUGUI>(); 
     }
 
     private void Start()
@@ -83,6 +102,31 @@ public class PanelUI : MonoBehaviour
     public void SetTotalScoreText(int value)
     {
         totalScoreText.text = $"Total Score : {value}";
+    }
+
+    /// <summary>
+    /// 버튼 텍스트 기본 설정 함수 (Exit)
+    /// </summary>
+    public void SetButtonText()
+    {
+        buttonText.text = $"Exit";
+    }
+
+    /// <summary>
+    /// 버튼 텍스트 설정함수
+    /// </summary>
+    /// <param name="str">출력 내용</param>
+    public void SetButtonText(string str)
+    {
+        buttonText.text = $"{str}";
+    }
+
+    /// <summary>
+    /// 이 스크립트 내에서 저장된 데이터에서 이미지 설정하기
+    /// </summary>
+    public void SetPanelImage(int index)
+    {
+        panelImage.sprite = imageDatas[index];
     }
 
 #if UNITY_EDITOR

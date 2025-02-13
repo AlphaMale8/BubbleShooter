@@ -50,7 +50,7 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        print("gauge: " + currentGauge + "/" + maxGauge);
+        //print("gauge: " + currentGauge + "/" + maxGauge);
         MonstersList = GameObject.FindGameObjectsWithTag("Monster").ToList<GameObject>();
     }
     public void UpdateTime()

@@ -81,13 +81,13 @@ public class GameManager : MonoBehaviour
     {
         panel.SetActive(false);
 
-        Debug.Log(stageCount);
+        Debug.Log($"stage count {stageCount}");
         Debug.Log(SceneManager.sceneCount);
         
         if (stageCount < SceneManager.sceneCount)
         {
             ++stageCount;
-            BallManager.maxPool = stageCount == 1 ? 10 : 15;
+            BallManager.maxPool = stageCount == 1 ? 40 : 60; // 60 ¾ÈµÊ -> ?? 
             SceneManager.LoadScene($"Stage{stageCount +  1}");
         }
         else

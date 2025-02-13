@@ -55,7 +55,7 @@ MonoBehaviour:
   damage: 1
   maxGauge: 100
   gaugeSpeed: 15
-  useGauge: 30
+  useGauge: 20
   bulletNum: 9
   destroyTime: 1
 --- !u!1001 &502329426092640939
