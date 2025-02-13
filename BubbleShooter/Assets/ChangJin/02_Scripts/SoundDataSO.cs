@@ -1,11 +1,17 @@
 using UnityEngine;
 
+public enum SoundType
+{
+    InGameBGM,
+    FireA, FireB, FireC,
+    GunChange,
+    Defeat,
+    StageClear
+}
+
+[CreateAssetMenu(fileName = "Sound_Name", menuName ="ScriptableObject/Sound", order = 1)]
 public class SoundDataSO : ScriptableObject
 {
-    [System.Serializable]
-    public struct AudioData
-    {
-        public string AudioName;
-        public AudioClip AudioClip;
-    };
+    public SoundType type;
+    public AudioClip AudioClip;
 }
