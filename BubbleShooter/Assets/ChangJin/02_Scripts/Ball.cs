@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using static BallDataSO;
 using Random = UnityEngine.Random;
 
 public class Ball : MonoBehaviour
@@ -19,6 +20,11 @@ public class Ball : MonoBehaviour
     public Vector3 SpawnPoint = Vector3.zero;
 
     private BallManager ballManager;
+
+    public BallFeature ballFeature;
+
+    [SerializeField]private GameObject normalMesh;
+    [SerializeField]private GameObject damagedMesh;
 
     // Ball울 초기화하기
     void Start()
@@ -43,7 +49,7 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Bullet"))
+        if (other.CompareTag("Player"))
         {
             if (other.CompareTag("Bullet"))
             {
@@ -63,14 +69,37 @@ public class Ball : MonoBehaviour
                 ballManager.Instance.ballList.Remove(gameObject);
 
                 this.gameObject.SetActive(false);
+            }
 
+            if (normalMesh)
+            {
+                damagedMesh.SetActive(true);
+                normalMesh.SetActive(false);
             }
         }
     }
 
-    public void InitializeProperty()
+    public void InitializeProperty(BallFeature _feature, Vector3 SpawnPoint)
     {
-        transform.localScale = Vector3.one * ScaleMod;
+        // 구조체 할당
+        ballFeature = _feature;
+
+        // transform 초기화
+        transform.localScale = Vector3.one * _feature.ScaleMod;
         transform.position = SpawnPoint;
+
+        // 특성값 초기화
+        Speed = _feature.Speed;
+        CameraToBallDestroyDistance = _feature.CameraToBallDestroyDistance;
+        health = _feature.Health;
+
+        // 최초 프리팹 추가
+        normalMesh = Instantiate(_feature.NormalMesh);
+        normalMesh.transform.SetParent(transform, false);
+        normalMesh.SetActive(true);
+
+        damagedMesh = Instantiate(_feature.DamagedMesh);
+        damagedMesh.transform.SetParent(transform, false);
+        damagedMesh.SetActive(false);
     }
 } 
