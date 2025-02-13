@@ -50,14 +50,8 @@ public class BallManager : MonoBehaviour
         {
             GameObject go = Instantiate(prefab);
             Ball newBall = go.GetComponent<Ball>();
-            BallFeature _feature = data.feature[Random.Range(0, data.feature.Count)];
-
-            newBall.Speed = _feature.Speed;
-            newBall.ScaleMod = _feature.ScaleMod;
-            newBall.CameraToBallDestroyDistance = _feature.CameraToBallDestroyDistance;
-            newBall.MinVector = _feature.MinVector;
-            newBall.MaxVector = _feature.MaxVector;
-            newBall.InitializeProperty();
+            newBall.InitializeProperty(data.feature[Random.Range(0, data.feature.Count)], data.SpawnPosition[Random.Range(0, data.SpawnPosition.Count)]);
+            
 
             newBall.name = $"Ball_{i:00}";
             go.SetActive(false);

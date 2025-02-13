@@ -56,6 +56,7 @@ public class Shotgun : Gun
 
                 Bullet bulletCom = newBullet.GetComponent<Bullet>();
                 bulletCom.setBulletSpeed(bulletSpeed);
+                bulletCom.setDamage(damage);
             }
         }
 

@@ -10,12 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6046363482103462286}
   - component: {fileID: 4635329367419854594}
-<<<<<<< Updated upstream
-  - component: {fileID: 1844915225192675390}
-=======
   - component: {fileID: 6309108774809122435}
   - component: {fileID: 6662972595215562665}
->>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -52,11 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-<<<<<<< Updated upstream
---- !u!135 &1844915225192675390
-=======
 --- !u!135 &6309108774809122435
->>>>>>> Stashed changes
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,8 +69,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
-=======
 --- !u!54 &6662972595215562665
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106,7 +96,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
->>>>>>> Stashed changes
 --- !u!1 &9059158080567523325
 GameObject:
   m_ObjectHideFlags: 0

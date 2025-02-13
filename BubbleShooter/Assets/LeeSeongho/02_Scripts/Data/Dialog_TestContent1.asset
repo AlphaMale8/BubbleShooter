@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda3c591c9b3ced4c8bd6fc63154bf32, type: 3}
+  m_Name: Dialog_TestContent1
+  m_EditorClassIdentifier: 
+  content: "[ \uD55C\uAE00 \uD14D\uC2A4\uD2B8 \uB2E4\uC774\uC5BC\uB85C\uADF8 ]"

@@ -290,7 +290,8 @@ MonoBehaviour:
   CreateButton: {fileID: 0}
   ballList: []
   ballPool: []
-  maxPool: 10
+  maxPool: 50
+  isClear: 0
 --- !u!1001 &1561946444
 PrefabInstance:
   m_ObjectHideFlags: 0

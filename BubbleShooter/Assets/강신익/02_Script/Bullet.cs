@@ -3,10 +3,16 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 10.0f;
+    private int damage;
 
     public void setBulletSpeed(float bulletSpeed)
     {
         speed = bulletSpeed;
+    }
+
+    public void setDamage(int damage)
+    {
+        this.damage = damage;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

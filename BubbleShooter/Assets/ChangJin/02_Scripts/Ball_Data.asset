@@ -12,19 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebfab6669564e4458d3e2d8c9b416f5, type: 3}
   m_Name: Ball_Data
   m_EditorClassIdentifier: 
+  SpawnPosition:
+  - {x: -20, y: 11, z: 0}
+  - {x: 0, y: 11, z: 0}
+  - {x: 20, y: 11, z: 0}
+  - {x: -20, y: 7, z: 0}
+  - {x: 0, y: 7, z: 0}
+  - {x: 20, y: 7, z: 0}
+  - {x: -20, y: 3, z: 0}
+  - {x: 0, y: 3, z: 0}
+  - {x: 20, y: 3, z: 0}
   feature:
   - Speed: 10
     ScaleMod: 2
     CameraToBallDestroyDistance: 2
-    MinVector: {x: -16, y: 0.3, z: 5}
-    MaxVector: {x: 16, y: 5, z: 1}
+    Health: 30
+    NormalMesh: {fileID: 919132149155446097, guid: d46868be3e1d02941b3eb6ead24684f9, type: 3}
+    DamagedMesh: {fileID: 919132149155446097, guid: 232c629cab66db14385664c3b9dc3f4e, type: 3}
   - Speed: 10
     ScaleMod: 1
     CameraToBallDestroyDistance: 3
-    MinVector: {x: -16, y: 0.4, z: 5}
-    MaxVector: {x: 16, y: 10, z: 1}
+    Health: 30
+    NormalMesh: {fileID: 919132149155446097, guid: f183b50503b70e74bb619de1154a7425, type: 3}
+    DamagedMesh: {fileID: 919132149155446097, guid: 29c18d27b62c6564093b8e4639e22843, type: 3}
   - Speed: 10
     ScaleMod: 1.5
     CameraToBallDestroyDistance: 3
-    MinVector: {x: -16, y: 0.3, z: 5}
-    MaxVector: {x: 16, y: 15, z: 1}
+    Health: 1
+    NormalMesh: {fileID: 919132149155446097, guid: 0a8fbcded405f4043a6b6fade3b152f2, type: 3}
+    DamagedMesh: {fileID: 919132149155446097, guid: 35d3d737987a4aa4c81d75542beebf14, type: 3}

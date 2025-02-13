@@ -25,6 +25,7 @@ public class SniperRifle : Gun
 
             Bullet bulletCom = newBullet.GetComponent<Bullet>();
             bulletCom.setBulletSpeed(bulletSpeed);
+            bulletCom.setDamage(damage);
         }
 
         int index = 0;

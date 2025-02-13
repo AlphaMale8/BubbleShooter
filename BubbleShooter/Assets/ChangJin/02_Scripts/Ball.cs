@@ -1,44 +1,44 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using static BallDataSO;
 using Random = UnityEngine.Random;
 
 public class Ball : MonoBehaviour
 {
     [SerializeField]
     public GameObject Character;
-    // Ball�� �ʱⰪ
+    // Ball의 특성
     [SerializeField]
     public float Speed = 5.0f;
     [SerializeField]
     public float ScaleMod = 1.0f;
     [SerializeField]
     public float CameraToBallDestroyDistance = 3.0f;
-
-    public Vector3 MinVector = new Vector3(-5.0f, 0.3f, 5.0f);
-    public Vector3 MaxVector = new Vector3(5.0f, 0.3f, 1.0f);
-
     public int health = 10;
+
+    public Vector3 SpawnPoint = Vector3.zero;
 
     private BallManager ballManager;
 
-    // Ball�� �ʱ� �� ����
+    public BallFeature ballFeature;
+
+    [SerializeField]private GameObject normalMesh;
+    [SerializeField]private GameObject damagedMesh;
+
+    // Ball울 초기화하기
     void Start()
     {
         Character = GameObject.FindGameObjectWithTag($"Player");
         ballManager = FindAnyObjectByType<BallManager>();
-        transform.localScale = Vector3.one * ScaleMod;
-        transform.localPosition = new Vector3(
-                    Random.Range(MinVector.x, MaxVector.x),
-                    Random.Range(MinVector.y, MaxVector.y),
-                    Random.Range(MinVector.z, MaxVector.z));
     }
 
     void Update()
     {
         // Vector3 dir = (Camera.main.transform.position - transform.position).normalized;
         Vector3 dir = (Character.transform.position - transform.position).normalized;
-        transform.Translate(dir* Time.deltaTime * Speed);
+        transform.Translate(dir* Time.deltaTime * Speed, Space.World);
+        transform.rotation = Quaternion.LookRotation(dir) ;
         // if (Vector3.Distance(Camera.main.transform.position, transform.position) <= CameraToBallDestroyDistance)
         // if (Vector3.Distance(Character.transform.position, transform.position) <= CameraToBallDestroyDistance)
         // {
@@ -49,9 +49,7 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print(1234);
-
-        if (other.CompareTag("Player") || other.CompareTag("Bullet"))
+        if (other.CompareTag("Player"))
         {
             if (other.CompareTag("Bullet"))
             {
@@ -71,17 +69,37 @@ public class Ball : MonoBehaviour
                 ballManager.Instance.ballList.Remove(gameObject);
 
                 this.gameObject.SetActive(false);
+            }
 
+            if (normalMesh)
+            {
+                damagedMesh.SetActive(true);
+                normalMesh.SetActive(false);
             }
         }
     }
 
-    public void InitializeProperty()
+    public void InitializeProperty(BallFeature _feature, Vector3 SpawnPoint)
     {
-        transform.localScale = Vector3.one * ScaleMod;
-        transform.position = new Vector3(
-            Random.Range(MinVector.x, MaxVector.x),
-            Random.Range(MinVector.y, MaxVector.y),
-            Random.Range(MinVector.z, MaxVector.z));
+        // 구조체 할당
+        ballFeature = _feature;
+
+        // transform 초기화
+        transform.localScale = Vector3.one * _feature.ScaleMod;
+        transform.position = SpawnPoint;
+
+        // 특성값 초기화
+        Speed = _feature.Speed;
+        CameraToBallDestroyDistance = _feature.CameraToBallDestroyDistance;
+        health = _feature.Health;
+
+        // 최초 프리팹 추가
+        normalMesh = Instantiate(_feature.NormalMesh);
+        normalMesh.transform.SetParent(transform, false);
+        normalMesh.SetActive(true);
+
+        damagedMesh = Instantiate(_feature.DamagedMesh);
+        damagedMesh.transform.SetParent(transform, false);
+        damagedMesh.SetActive(false);
     }
 } 

@@ -161,6 +161,7 @@ MonoBehaviour:
   monster: {fileID: 0}
   monstersList: []
   minimumDistance: 10
+  damage: 3
 --- !u!1 &7453955412338903773
 GameObject:
   m_ObjectHideFlags: 0
