@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,9 +7,7 @@ public class Ball : MonoBehaviour
 {
     [SerializeField]
     public GameObject Character;
-    // BallÀÇ ÃÊ±â°ª
-    public Camera MainCamera;
-    public BallManager ballManager;
+    // Ballï¿½ï¿½ ï¿½Ê±â°ª
     [SerializeField]
     public float Speed = 5.0f;
     [SerializeField]
@@ -16,18 +15,18 @@ public class Ball : MonoBehaviour
     [SerializeField]
     public float CameraToBallDestroyDistance = 3.0f;
 
-    [SerializeField] private Vector3 MinVector = new Vector3(-5.0f, 0.3f, 5.0f);
-    [SerializeField] private Vector3 MaxVector = new Vector3(5.0f, 0.3f, 1.0f);
+    [SerializeField] private Vector3 MinVector = new Vector3(-16.0f, 0.3f, 5.0f);
+    [SerializeField] private Vector3 MaxVector = new Vector3(16.0f, 0.3f, 1.0f);
+    
+    private BallManager ballManager;
 
-    public bool Istargeted { get; set; } = false;
-
-    public Action onDisable;
-    // BallÀÇ ÃÊ±â °ª ¼³Á¤
-    void OnEnable()
+    private Action RemoveList;
+    
+    // Ballï¿½ï¿½ ï¿½Ê±ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    void Start()
     {
-        MainCamera = FindAnyObjectByType<Camera>();
+        Character = GameObject.FindGameObjectWithTag($"Player");
         ballManager = FindAnyObjectByType<BallManager>();
-
         transform.localScale = Vector3.one * ScaleMod;
         transform.localPosition = new Vector3(
                     Random.Range(MinVector.x, MaxVector.x),
@@ -37,26 +36,22 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        if (Character != null)
-        {
-            // ÇÃ·¹ÀÌ¾î¿Í °ø »çÀÌÀÇ º¤ÅÍ °è»ê (°ø -> ÇÃ·¹ÀÌ¾î ¹æÇâ)
-            Vector3 dir = (MainCamera.transform.position - transform.position).normalized;
-
-            // °øÀÌ ±× ¹æÇâÀ¸·Î ÀÌµ¿ÇÏµµ·Ï ¼³Á¤
-            transform.Translate(dir * Time.deltaTime * Speed);
-        }
+        // Vector3 dir = (Camera.main.transform.position - transform.position).normalized;
+        Vector3 dir = (Character.transform.position - transform.position).normalized;
+        transform.Translate(dir* Time.deltaTime * Speed);
+        // if (Vector3.Distance(Camera.main.transform.position, transform.position) <= CameraToBallDestroyDistance)
+        // if (Vector3.Distance(Character.transform.position, transform.position) <= CameraToBallDestroyDistance)
+        // {
+        //     ballManager.BallList.Remove(gameObject);
+        //     Destroy(gameObject);
+        // }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("GunFront"))
+        if(other.CompareTag("Player"))
         {
-            ballManager.Instance.ballList.Remove(gameObject);
-        }
-
-        if (Character != null && other.gameObject.CompareTag("Character"))
-        {
-            ballManager.Instance.ballList.Remove(gameObject);
+            ballManager.Instance.BallList.Remove(gameObject);
             Destroy(gameObject);
         }
     }

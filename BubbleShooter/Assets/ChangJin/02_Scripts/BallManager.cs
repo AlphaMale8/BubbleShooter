@@ -1,25 +1,35 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class BallManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] prefabs;
 
-    public List<GameObject> ballList = new List<GameObject>();
-    public BallManager Instance = null;
+    public BallManager Instance;
 
     public Button CreateButton;
 
-    void Awake()
+    public List<GameObject> BallList { get; } = new List<GameObject>();
+    
+    private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(Instance);
+        }
+        else if (Instance != this)
+        {
+            Destroy(this);
+        }
     }
 
     void Start()
     {
-        if (CreateButton != null)
+        if(CreateButton != null)
         {
             Button btn = CreateButton.GetComponent<Button>();
             btn.onClick.AddListener(CreateBall);
@@ -28,27 +38,6 @@ public class BallManager : MonoBehaviour
 
     void CreateBall()
     {
-        GameObject go = Instantiate(prefabs[Random.Range(0, prefabs.Length)]);
-
-        ballList.Add(go);
-        Ball newBall = go.GetComponent<Ball>();
-        newBall.onDisable += () => { RemoveBall(go); };
-    }
-
-    public void RemoveBall(GameObject go)
-    {
-        Destroy(go);
-        ballList.Remove(go);
-    }
-
-    public GameObject GetFirstBall()
-    {
-        if (ballList.Count == 0) return null;
-        else return ballList[0];
-    }
-
-    void Update()
-    {
-
+        BallList.Add(Instantiate(prefabs[Random.Range(0, prefabs.Length)]));
     }
 }

@@ -11,31 +11,32 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private GameObject monster;
     [SerializeField] private List<GameObject> monstersList;
+
+    // private int bulletCount = 30;
+    
     public List<GameObject> MonstersList
     {
         get => monstersList;
         private set => monstersList = value;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void OnEnable()
-    {
-        
-    }
-
     // Update is called once per frame
     protected void Update()
     {
-        // ¹ß»ç
-        // Bullet »ý¼ºÇÏ¸é¼­ À§Ä¡, È¸Àü, ¸ÓÅ×¸®¾ó ³Ö¾îÁÜ
+        // ï¿½ß»ï¿½
+        // Bullet ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸é¼­ ï¿½ï¿½Ä¡, È¸ï¿½ï¿½, ï¿½ï¿½ï¿½×¸ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            GameObject newBullet = Instantiate(bullet);
+            // if (bulletCount > 0)
+            // {
+                GameObject newBullet = Instantiate(bullet);
 
-            newBullet.transform.position = transform.position;
-            newBullet.transform.rotation = transform.rotation;
+                newBullet.transform.position = transform.position;
+                newBullet.transform.rotation = transform.rotation;
+            // }
         }
-        // ¸ó½ºÅÍ ¹æÇâ Á¶ÁØ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
         MonstersList = GameObject.FindGameObjectsWithTag("Monster").ToList<GameObject>();
 
         DistanceComparer distanceComparer = new DistanceComparer();
@@ -48,7 +49,7 @@ public class Gun : MonoBehaviour
 
             float lerpTime = Time.deltaTime / 1.0f;
 
-            lerpTime += lerpTime * rotateSpeed; // È¸Àü ¼Óµµ Á¶Àý
+            lerpTime += lerpTime * rotateSpeed; // È¸ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
 
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lerpTime);
         }

@@ -18,8 +18,6 @@ public class GunController : MonoBehaviour
 
     private GunType gunType = GunType.Pistol;
 
-    public testimie[] asdf;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,10 +28,10 @@ public class GunController : MonoBehaviour
         foreach (var g in guns)
         {
             g.transform.localPosition = Vector3.zero;
+            g.SetActive(false);
         }
 
-        guns[(int)GunType.SniperRifle].SetActive(false);
-        guns[(int)GunType.Shotgun].SetActive(false);
+        guns[(int)GunType.Pistol].SetActive(true);
     }
 
     // Update is called once per frame

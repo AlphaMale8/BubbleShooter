@@ -60,7 +60,8 @@ public class BulletUI : MonoBehaviour
     }
     private void TestInput()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        // if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (currentBullet == 0)
             {
