@@ -18,6 +18,8 @@ public class Ball : MonoBehaviour
     public Vector3 MinVector = new Vector3(-5.0f, 0.3f, 5.0f);
     public Vector3 MaxVector = new Vector3(5.0f, 0.3f, 1.0f);
 
+    public int health = 10;
+
     private BallManager ballManager;
 
     // Ball�� �ʱ� �� ����
@@ -50,7 +52,20 @@ public class Ball : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             ballManager.Instance.ballList.Remove(gameObject);
+            
             this.gameObject.SetActive(false);
+        }
+
+        if (other.CompareTag("Bullet"))
+        {
+            if (health <= 0)
+            {
+                print(1234);
+                ballManager.Instance.ballList.Remove(gameObject);
+
+                this.gameObject.SetActive(false);
+
+            }
         }
     }
 

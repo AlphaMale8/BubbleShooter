@@ -41,6 +41,8 @@ public class GunController : MonoBehaviour
         {
             int num = (int)gunType;
 
+            print(num);
+
             Transform prevTransform = guns[num].transform;
 
             if (num == (int)GunType.Shotgun)

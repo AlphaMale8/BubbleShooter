@@ -1,3 +1,4 @@
+ï»¿using System.Linq;
 using UnityEngine;
 
 public class Shotgun : Gun
@@ -15,30 +16,55 @@ public class Shotgun : Gun
     {
         base.Update();
 
-        // ¹ß»ç
-        // Bullet »ı¼ºÇÏ¸é¼­ À§Ä¡, È¸Àü, ¸ÓÅ×¸®¾ó ³Ö¾îÁÜ
+        // ë°œì‚¬
+        // Bullet ìƒì„±í•˜ë©´ì„œ ìœ„ì¹˜, íšŒì „, ë¨¸í…Œë¦¬ì–¼ ë„£ì–´ì¤Œ
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            for (int i = 0; i < bulletNum; ++i)
+            float z = 5.0f;
+
+            float x1 = -16.0f;
+            float x2 = 0.0f;
+            float x3 = 16.0f;
+
+            float y1 = 0.3f;
+            float y2 = 7.5f;
+            float y3 = 15.0f;
+
+            Vector3[] dest = 
+            {
+                new Vector3(x1, y1, z),
+                new Vector3(x1, y2, z),
+                new Vector3(x1, y3, z),
+                new Vector3(x2, y1, z),
+                new Vector3(x2, y2, z),
+                new Vector3(x2, y3, z),
+                new Vector3(x3, y1, z),
+                new Vector3(x3, y2, z),
+                new Vector3(x3, y3, z)
+            };
+
+            for (int i = 0; i < dest.Length; ++i)
             {
                 GameObject newBullet = Instantiate(bullet);
 
                 newBullet.transform.position = transform.position;
 
-                Vector3 angles = transform.rotation.eulerAngles;
+                Quaternion bulletDir = Quaternion.LookRotation(dest[i] - transform.position);
 
-                float axisX = Random.Range(-10.0f, 10.0f);
-                float axisY = Random.Range(-10.0f, 10.0f);
-
-                angles.x += axisX;
-                angles.y += axisY;
-
-                newBullet.transform.rotation = Quaternion.Euler(angles);
+                newBullet.transform.rotation = bulletDir;
 
 
                 Bullet bulletCom = newBullet.GetComponent<Bullet>();
                 bulletCom.setBulletSpeed(bulletSpeed);
             }
         }
+
+        Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward);
+
+        float lerpTime = Time.deltaTime / 1.0f;
+
+        lerpTime += lerpTime * rotateSpeed; // È¸ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lerpTime);
     }
 }

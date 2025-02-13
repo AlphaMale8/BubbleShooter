@@ -47,13 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballManager: {fileID: 0}
   bullet: {fileID: 8500750412795672547, guid: c45b752e7088793488ddd528aec63880, type: 3}
-  rotateSpeed: 2
-  red: {fileID: 2100000, guid: 9552b4d31667c7a44a1f60294027412c, type: 2}
-  blue: {fileID: 2100000, guid: 443285596c9041a4bbc1094e68cb696c, type: 2}
-  black: {fileID: 2100000, guid: a79727143abd9044d9a16661465540e5, type: 2}
-  green: {fileID: 2100000, guid: ec30b57c06278c44ea8d0c26ce0ba9cf, type: 2}
+  rotateSpeed: 10
+  bulletSpeed: 0
   monster: {fileID: 0}
-  gunFront: {fileID: 14394220363111981, guid: 8cb62f28873e25340bb8e2a60179c167, type: 3}
+  monstersList: []
+  minimumDistance: 20
 --- !u!1 &7665780181816753204
 GameObject:
   m_ObjectHideFlags: 0

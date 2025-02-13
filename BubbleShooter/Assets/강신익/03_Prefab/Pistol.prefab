@@ -156,10 +156,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballManager: {fileID: 0}
   bullet: {fileID: 8500750412795672547, guid: c45b752e7088793488ddd528aec63880, type: 3}
-  rotateSpeed: 2
+  rotateSpeed: 10
   bulletSpeed: 100
   monster: {fileID: 0}
   monstersList: []
+  minimumDistance: 10
 --- !u!1 &7453955412338903773
 GameObject:
   m_ObjectHideFlags: 0

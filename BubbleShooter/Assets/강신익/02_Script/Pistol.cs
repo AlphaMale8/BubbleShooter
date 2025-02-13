@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class Pistol : Gun
@@ -13,8 +14,8 @@ public class Pistol : Gun
     {
         base.Update();
 
-        // ¹ß»ç
-        // Bullet »ı¼ºÇÏ¸é¼­ À§Ä¡, È¸Àü, ¸ÓÅ×¸®¾ó ³Ö¾îÁÜ
+        // ë°œì‚¬
+        // Bullet ìƒì„±í•˜ë©´ì„œ ìœ„ì¹˜, íšŒì „, ë¨¸í…Œë¦¬ì–¼ ë„£ì–´ì¤Œ
         if (Input.GetKeyUp(KeyCode.Space))
         {
             GameObject newBullet = Instantiate(bullet);
@@ -23,6 +24,44 @@ public class Pistol : Gun
             newBullet.transform.rotation = transform.rotation;
             Bullet bulletCom = newBullet.GetComponent<Bullet>();
             bulletCom.setBulletSpeed(bulletSpeed);
+        }
+
+        int index = 0;
+        while (index < MonstersList.Count)
+        {
+            if (Vector3.Distance(transform.position, MonstersList[index].transform.position) < minimumDistance)
+            {
+                MonstersList.RemoveAt(index);
+            }
+            else
+            {
+                ++index;
+            }
+        }
+
+        DistanceComparer distanceComparer = new DistanceComparer();
+        distanceComparer.setGun(gameObject);
+        MonstersList.Sort(distanceComparer);
+
+        if (MonstersList.Count > 0)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(MonstersList.First().transform.position - transform.position);
+
+            float lerpTime = Time.deltaTime / 1.0f;
+
+            lerpTime += lerpTime * rotateSpeed; // È¸ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lerpTime);
+        }
+        else
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward);
+
+            float lerpTime = Time.deltaTime / 1.0f;
+
+            lerpTime += lerpTime * rotateSpeed; // È¸ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lerpTime);
         }
     }
 }
