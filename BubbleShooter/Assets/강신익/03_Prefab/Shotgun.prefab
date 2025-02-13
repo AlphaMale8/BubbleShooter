@@ -48,16 +48,16 @@ MonoBehaviour:
   ballManager: {fileID: 0}
   bullet: {fileID: 8500750412795672547, guid: c45b752e7088793488ddd528aec63880, type: 3}
   rotateSpeed: 10
-  bulletSpeed: 50
+  bulletSpeed: 100
   monster: {fileID: 0}
   monstersList: []
   minimumDistance: 10
   damage: 1
-  reloadTime: 1
   maxGauge: 100
-  gaugeSpeed: 10
-  useGauge: 40
+  gaugeSpeed: 15
+  useGauge: 30
   bulletNum: 9
+  destroyTime: 1
 --- !u!1001 &8102257004779104430
 PrefabInstance:
   m_ObjectHideFlags: 0
