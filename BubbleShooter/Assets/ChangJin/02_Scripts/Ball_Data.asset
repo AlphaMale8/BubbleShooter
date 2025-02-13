@@ -18,13 +18,16 @@ MonoBehaviour:
     CameraToBallDestroyDistance: 2
     MinVector: {x: -16, y: 0.3, z: 5}
     MaxVector: {x: 16, y: 5, z: 1}
+    Health: 5
   - Speed: 10
     ScaleMod: 1
     CameraToBallDestroyDistance: 3
     MinVector: {x: -16, y: 0.4, z: 5}
     MaxVector: {x: 16, y: 10, z: 1}
+    Health: 30
   - Speed: 10
     ScaleMod: 1.5
     CameraToBallDestroyDistance: 3
     MinVector: {x: -16, y: 0.3, z: 5}
     MaxVector: {x: 16, y: 15, z: 1}
+    Health: 1
