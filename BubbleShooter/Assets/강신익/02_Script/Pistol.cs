@@ -4,10 +4,6 @@ using UnityEngine;
 public class Pistol : Gun
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -59,7 +55,7 @@ public class Pistol : Gun
         Vector3.Angle(targetVector, gameObject.transform.forward);
         float angle = Vector3.Angle(targetVector, gameObject.transform.forward);
 
-        print(angle);
+        //print(angle);
 
         // 발사
         // Bullet 생성하면서 위치, 회전, 머테리얼 넣어줌

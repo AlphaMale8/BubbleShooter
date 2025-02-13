@@ -5,15 +5,19 @@ using UnityEngine.UI;
 
 public class HpGaugeUI : MonoBehaviour
 {
+    Player player;
     Slider hpSlider;
 
-    private void Awake()
+    protected virtual void Awake()
     {
+        player = FindAnyObjectByType<Player>();
         hpSlider = GetComponent<Slider>();
     }
 
     private void Start()
     {
+        player.OnHpChange = SetSliderValue;
+
 #if UNITY_EDITOR
         testInit();
 #endif

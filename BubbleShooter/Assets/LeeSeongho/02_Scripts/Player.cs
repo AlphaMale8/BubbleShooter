@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
         set
         {
             hp = value;
-            OnHpChange?.Invoke(hp);
+            OnHpChange?.Invoke(hp / 100); // 맥스 체력 넣을것
         }
     }
 

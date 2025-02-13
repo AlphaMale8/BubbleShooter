@@ -384,9 +384,9 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 86694bec7dc436d46834ada14b626508, type: 2}
   ballList: []
   ballPool: []
+  currentStageScore: 0
   Panel: {fileID: 1439696869}
   NextStageButton: {fileID: 2141675823}
-  currentStageScore: 0
 --- !u!4 &1018364473
 Transform:
   m_ObjectHideFlags: 0

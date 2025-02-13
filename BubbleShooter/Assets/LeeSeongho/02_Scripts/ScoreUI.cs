@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ScoreUI : MonoBehaviour
 {
+    BallManager manager;
     TextMeshProUGUI scoreText;
 
     /// <summary>
@@ -12,11 +13,13 @@ public class ScoreUI : MonoBehaviour
 
     private void Awake()
     {
+        manager = FindAnyObjectByType<BallManager>();
         scoreText = GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
     {
+        manager.OnStageScoreChange += SetScoreText;
 #if UNITY_EDITOR
         testInit();
 #endif

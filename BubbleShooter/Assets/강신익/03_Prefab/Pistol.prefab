@@ -53,10 +53,9 @@ MonoBehaviour:
   monstersList: []
   minimumDistance: 10
   damage: 32
-  reloadTime: 0.01
   maxGauge: 100
-  gaugeSpeed: 100
-  useGauge: 1
+  gaugeSpeed: 10
+  useGauge: 10
 --- !u!1001 &2268622630879882943
 PrefabInstance:
   m_ObjectHideFlags: 0

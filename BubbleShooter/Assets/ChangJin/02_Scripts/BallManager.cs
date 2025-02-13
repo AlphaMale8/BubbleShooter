@@ -10,27 +10,44 @@ using Random = UnityEngine.Random;
 
 public class BallManager : MonoBehaviour
 {
+    // Player
     private Player player;
     public Player Player { get => player; }
     float maxHp = 100;
 
     [SerializeField] private GameObject prefab;
 
+    // data
     public BallDataSO data;
-
+    
+    // pool
     [DoNotSerialize] public static int maxPool = 10;
 
     public List<GameObject> ballList = new List<GameObject>();
     public List<GameObject> ballPool = new List<GameObject>();
 
-    public int DestroyCount { get; set; } = 0;
+    // count
+    private int destoryCount = 0;
+    public int DestroyCount
+    {
+        get => destoryCount;
+        set
+        {
+            destoryCount = value;
+            OnStageScoreChange?.Invoke(destoryCount);
+        }
 
+    }
+    public int currentStageScore = 0;
+
+    // action
     public Action StageClear;
+    public Action<int> OnStageScoreChange;
 
+
+    // panel
     public GameObject Panel;
     public Button NextStageButton; // 패널 버튼
-
-    public int currentStageScore = 0;
 
     private bool isGameEnd = false;
 
@@ -71,7 +88,7 @@ public class BallManager : MonoBehaviour
         if(NextStageButton != null)
             NextStageButton.onClick.AddListener(LoadScene);
 
-        player.Hp = maxHp;        
+        player.Hp = maxHp;
     }
     private void Update()
     {
@@ -89,8 +106,7 @@ public class BallManager : MonoBehaviour
             ui.SetStageScoreText(DestroyCount);
             ui.SetTotalScoreText(PlayerPrefs.GetInt("Score"));
 
-            if (NextStageButton != null)
-                NextStageButton.onClick.AddListener(() => { SceneManager.LoadScene("Title");  Time.timeScale = 1f;  });
+            NextStageButton.onClick.AddListener(() => { SceneManager.LoadScene("Title");  Time.timeScale = 1f;  });
         }
 
         if(!isGameEnd && ballList.Count <= 0 && player.Hp > 0f) // 몬스터 개수 0, 플레이어가 생존일때

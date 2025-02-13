@@ -4,9 +4,16 @@ public class BulletGaugeUI : HpGaugeUI
 {
     private GunController gc;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+    }
+
+    private void Start()
+    {        
         gc = FindAnyObjectByType<GunController>();
+
+        //SetSliderValue(0f);
     }
 
     private void Update()
