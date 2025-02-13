@@ -18,7 +18,7 @@ public class CameraScripts : MonoBehaviour
 
     void Update()
     {
-        if (ballManager.Instance.BallList.Count > 0)
+        if (ballManager.Instance.ballList.Count > 0)
         {
             // 공들의 중앙 좌표 계산
             Vector3 centerPosition = GetBallsCenterPosition();
@@ -28,28 +28,28 @@ public class CameraScripts : MonoBehaviour
         }
     }
 
-    // 🔹 공들의 중앙 좌표 계산
+    // 공들의 중앙 좌표 계산
     private Vector3 GetBallsCenterPosition()
     {
-        if (ballManager.Instance.BallList.Count == 0)
+        if (ballManager.Instance.ballList.Count == 0)
             return transform.position;
 
         Vector3 sum = Vector3.zero;
 
-        foreach (GameObject ball in ballManager.Instance.BallList)
+        foreach (GameObject ball in ballManager.Instance.ballList)
         {
             sum += ball.transform.position;
         }
 
         // 평균값을 구하여 중앙 좌표 반환
-        Vector3 center = sum / ballManager.Instance.BallList.Count;
+        Vector3 center = sum / ballManager.Instance.ballList.Count;
 
         // y 좌표는 유지해서 회전할 때 높이가 변하지 않게 함
         center.y = transform.position.y;
         return center;
     }
 
-    // 🔹 특정 위치를 바라보도록 회전
+    // 특정 위치를 바라보도록 회전
     private void LookAtTargetPosition(Vector3 targetPosition)
     {
         Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);

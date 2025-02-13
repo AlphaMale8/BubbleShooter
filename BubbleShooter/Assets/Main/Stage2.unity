@@ -302,7 +302,6 @@ MonoBehaviour:
   assaultRifle: {fileID: 5415537895174209458, guid: e9c9656a3d36d02419bb57d48ef9e59d, type: 3}
   sniperRifle: {fileID: 4918259303350937544, guid: 087cfeae772d12843bfdcca978d43c17, type: 3}
   shotgun: {fileID: 3548109961491705201, guid: 6defd5bd5b1ed78488f2b5e31b70ab1c, type: 3}
-  asdf: []
 --- !u!1 &285381679
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,11 +905,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 931611625}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3d6e93586f521a43bbc687402af598d, type: 3}
+  m_Script: {fileID: 11500000, guid: 14d709c10b5ea3448aef3d49c9a0ff40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 2
-  removeDelay: 3
   rotationSpeed: 0.1
   lerpTime: 0
 --- !u!1 &1113982706
@@ -1004,7 +1001,7 @@ GameObject:
   - component: {fileID: 1428851847}
   - component: {fileID: 1428851846}
   m_Layer: 5
-  m_Name: Text (TMP)  (1)
+  m_Name: 'Text (TMP) '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1140,7 +1137,7 @@ GameObject:
   - component: {fileID: 1464539633}
   - component: {fileID: 1464539635}
   m_Layer: 0
-  m_Name: LookLine
+  m_Name: GameManager
   m_TagString: GunFront
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1314,12 +1311,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5284f3a7da73117428ac2eae01c37d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 8043631923485576900, guid: a6b5e83e4fbde4b4cbc3027dd4e64588, type: 3}
-  - {fileID: 8043631923485576900, guid: e9b7546ca1467d940b22a197e455d769, type: 3}
-  - {fileID: 8043631923485576900, guid: cf56a81a3c52b1a4f805f0c323db8da3, type: 3}
+  prefab: {fileID: 8043631923485576900, guid: a6b5e83e4fbde4b4cbc3027dd4e64588, type: 3}
+  data: {fileID: 11400000, guid: 86694bec7dc436d46834ada14b626508, type: 2}
   Instance: {fileID: 1726551520}
   CreateButton: {fileID: 285381681}
+  ballList: []
+  ballPool: []
+  maxPool: 10
 --- !u!4 &1726551521
 Transform:
   m_ObjectHideFlags: 0
