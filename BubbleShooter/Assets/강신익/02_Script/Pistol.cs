@@ -28,9 +28,11 @@ public class Pistol : Gun
         MonstersList.Sort(distanceComparer);
 
         Vector3 targetVector;
+        GameObject targetObject = null;
 
         if (MonstersList.Count > 0)
         {
+            targetObject = MonstersList.First();
             targetVector = MonstersList.First().transform.position - transform.position;
             Quaternion targetRotation = Quaternion.LookRotation(targetVector);
 
@@ -69,6 +71,7 @@ public class Pistol : Gun
             bulletCom.setBulletSpeed(bulletSpeed);
             bulletCom.setDamage(damage);
             bulletCom.setGunType(GunController.GunType.Pistol);
+            bulletCom.setMonster(targetObject);
 
             currentGauge -= useGauge;
         }

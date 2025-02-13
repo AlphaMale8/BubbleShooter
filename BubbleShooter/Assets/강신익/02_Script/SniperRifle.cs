@@ -27,6 +27,7 @@ public class SniperRifle : Gun
         MonstersList.Sort(distanceComparer);
 
         Vector3 targetVector;
+        GameObject targetObject = null;
 
         if (MonstersList.Count > 0)
         {
@@ -69,6 +70,7 @@ public class SniperRifle : Gun
             bulletCom.setBulletSpeed(bulletSpeed);
             bulletCom.setDamage(damage);
             bulletCom.setGunType(GunController.GunType.SniperRifle);
+            bulletCom.setMonster(targetObject);
 
             currentGauge -= useGauge;
         }

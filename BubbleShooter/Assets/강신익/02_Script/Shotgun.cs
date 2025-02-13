@@ -5,6 +5,7 @@ using UnityEngine;
 public class Shotgun : Gun
 {
     [SerializeField] private int bulletNum;
+    [SerializeField] private float destroyTime;
 
     void Update()
     {
@@ -39,6 +40,7 @@ public class Shotgun : Gun
                 bulletCom.setBulletSpeed(bulletSpeed);
                 bulletCom.setDamage(damage);
                 bulletCom.setGunType(GunController.GunType.Shotgun);
+                bulletCom.setDestroyTime(destroyTime);
             }
 
             currentGauge -= useGauge;
