@@ -13,6 +13,9 @@ public class BallDataSO : ScriptableObject
         public float ScaleMod;
         public float CameraToBallDestroyDistance;
         public int Health;
+        // 일단 프리팹 자체를 생성하는 것으로 구현
+        public GameObject NormalMesh;
+        public GameObject DamagedMesh;
     };
 
     public List<Vector3> SpawnPosition;

@@ -58,7 +58,10 @@ public class BallManager : MonoBehaviour
             newBall.CameraToBallDestroyDistance = _feature.CameraToBallDestroyDistance;
             newBall.SpawnPoint = spawnPoint;
             newBall.health = _feature.Health;
+            GameObject gg = Instantiate(_feature.NormalMesh);
+            gg.transform.SetParent(go.transform,false);
             newBall.InitializeProperty();
+            
 
             newBall.name = $"Ball_{i:00}";
             go.SetActive(false);

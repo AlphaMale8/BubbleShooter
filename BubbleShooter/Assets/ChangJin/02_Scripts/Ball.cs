@@ -31,7 +31,8 @@ public class Ball : MonoBehaviour
     {
         // Vector3 dir = (Camera.main.transform.position - transform.position).normalized;
         Vector3 dir = (Character.transform.position - transform.position).normalized;
-        transform.Translate(dir* Time.deltaTime * Speed);
+        transform.Translate(dir* Time.deltaTime * Speed, Space.World);
+        transform.rotation = Quaternion.LookRotation(dir) ;
         // if (Vector3.Distance(Camera.main.transform.position, transform.position) <= CameraToBallDestroyDistance)
         // if (Vector3.Distance(Character.transform.position, transform.position) <= CameraToBallDestroyDistance)
         // {
@@ -42,8 +43,6 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print(1234);
-
         if (other.CompareTag("Player") || other.CompareTag("Bullet"))
         {
             if (other.CompareTag("Bullet"))
