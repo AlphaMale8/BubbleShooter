@@ -15,9 +15,13 @@ public class DialogUI : MonoBehaviour
         text = child.GetComponent<TextMeshProUGUI>();
     }
 
+    private void OnEnable()
+    {
+        DisalbleCanvas();        
+    }
+
     private void Start()
     {
-        DisalbleCanvas();
 #if UNITY_EDITOR
         testInit();
 #endif

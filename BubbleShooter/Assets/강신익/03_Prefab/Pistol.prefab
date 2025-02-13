@@ -52,17 +52,10 @@ MonoBehaviour:
   monster: {fileID: 0}
   monstersList: []
   minimumDistance: 10
-<<<<<<< Updated upstream
-  damage: 32
-  maxGauge: 100
-  gaugeSpeed: 10
-  useGauge: 10
-=======
   damage: 1
   maxGauge: 100
   gaugeSpeed: 15
   useGauge: 5
->>>>>>> Stashed changes
 --- !u!1001 &2268622630879882943
 PrefabInstance:
   m_ObjectHideFlags: 0

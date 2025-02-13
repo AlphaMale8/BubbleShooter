@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class SniperRifle : Gun
 {
+    Animator animator;
+
+    protected override  void Start()
+    {
+        animator = GameObject.FindGameObjectWithTag("Bear").GetComponent<Animator>();
+    }
+
     void Update()
     {
         base.Update();
@@ -61,6 +68,7 @@ public class SniperRifle : Gun
         // Bullet 생성하면서 위치, 회전, 머테리얼 넣어줌
         if (Input.GetKeyUp(KeyCode.Space) && currentGauge > useGauge && angle < 5.0f)
         {
+            animator.SetTrigger("IsAttack");
             GameObject newBullet = Instantiate(bullet);
 
             newBullet.transform.position = transform.position;

@@ -13,6 +13,6 @@ public class DialogController : MonoBehaviour
 
     private void Start()
     {
-        dc.SetDialogText(data);
+        dc.SetDialogText(data, 1.5f);
     }
 }

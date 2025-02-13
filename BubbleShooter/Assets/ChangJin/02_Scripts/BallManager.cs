@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,9 +20,7 @@ public class BallManager : MonoBehaviour
 
     // data
     public BallDataSO data;
-    
-    // pool
-    [DoNotSerialize] public static int maxPool = 10;
+    [DoNotSerialize] public static int maxPool = 1;
 
     public List<GameObject> ballList = new List<GameObject>();
     public List<GameObject> ballPool = new List<GameObject>();
@@ -86,10 +85,12 @@ public class BallManager : MonoBehaviour
         }
 
         if(NextStageButton != null)
-            NextStageButton.onClick.AddListener(LoadScene);
+            NextStageButton.onClick.AddListener(() => { LoadScene(); player.animator.SetBool("IsVictory", false); });
 
         player.Hp = maxHp;
     }
+
+    private float maxTimer = 3f;
     private void Update()
     {
         if (!isGameEnd && player.Hp <= 0)
@@ -97,16 +98,10 @@ public class BallManager : MonoBehaviour
             isGameEnd = true;
             player.Hp = 0;
 
-            // 패배
-            Panel.SetActive(true);
-            Time.timeScale = 0f;
+            player.animator.SetTrigger("IsDead");
 
-            PanelUI ui = Panel.GetComponentInChildren<PanelUI>();
-            ui.SetTitleText("Defeat . . .", Color.red);
-            ui.SetStageScoreText(DestroyCount);
-            ui.SetTotalScoreText(PlayerPrefs.GetInt("Score"));
-
-            NextStageButton.onClick.AddListener(() => { SceneManager.LoadScene("Title");  Time.timeScale = 1f;  });
+            StopAllCoroutines();
+            StartCoroutine(deadProcess());
         }
 
         if(!isGameEnd && ballList.Count <= 0 && player.Hp > 0f) // 몬스터 개수 0, 플레이어가 생존일때
@@ -114,7 +109,9 @@ public class BallManager : MonoBehaviour
             isGameEnd = true;
             // 승리
             Panel.SetActive(true);
-            
+
+            player.animator.SetBool("IsVictory", true);
+
             // UI 표시
             PanelUI ui = Panel.GetComponentInChildren<PanelUI>();
             ui.SetTitleText("Victory", Color.green);
@@ -132,6 +129,27 @@ public class BallManager : MonoBehaviour
                 ui.SetTotalScoreText();
             }
         }
+    }
+
+    private IEnumerator deadProcess()
+    {
+        float timeElapsed = 0;
+        while(timeElapsed < maxTimer)
+        {
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // 패배
+        Panel.SetActive(true);
+
+        PanelUI ui = Panel.GetComponentInChildren<PanelUI>();
+        ui.SetTitleText("Defeat . . .", Color.red);
+        ui.SetStageScoreText(DestroyCount);
+        ui.SetTotalScoreText(PlayerPrefs.GetInt("Score"));
+
+        if (NextStageButton != null)
+            NextStageButton.onClick.AddListener(() => { SceneManager.LoadScene("Title"); Time.timeScale = 1f; player.animator.SetBool("IsDead", false); });
     }
 
     private void OnEnable()

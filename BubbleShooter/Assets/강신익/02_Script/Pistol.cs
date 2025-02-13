@@ -3,7 +3,14 @@ using UnityEngine;
 
 public class Pistol : Gun
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    Animator animator;
+
+    protected override void Start()
+    {
+        base.Start();
+        animator = GameObject.FindGameObjectWithTag("Bear").GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -63,6 +70,7 @@ public class Pistol : Gun
         // Bullet 생성하면서 위치, 회전, 머테리얼 넣어줌
         if (Input.GetKeyUp(KeyCode.Space) && currentGauge > useGauge && angle < 5.0f)
         {
+            animator.SetTrigger("IsAttack");
             GameObject newBullet = Instantiate(bullet);
 
             newBullet.transform.position = transform.position;

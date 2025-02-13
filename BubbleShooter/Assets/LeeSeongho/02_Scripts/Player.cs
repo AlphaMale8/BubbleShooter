@@ -4,6 +4,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private float hp = 0;
+    public Animator animator;
+
+    private void Start()
+    {
+    }
 
     public float Hp
     {

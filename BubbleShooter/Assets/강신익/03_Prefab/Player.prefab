@@ -11,13 +11,8 @@ GameObject:
   - component: {fileID: 7029640950807932719}
   - component: {fileID: 2050504675799728767}
   - component: {fileID: 7540784942243344031}
-<<<<<<< Updated upstream
-  - component: {fileID: 1199510729622094714}
-  - component: {fileID: 6787846251731656436}
-=======
   - component: {fileID: 6646727492797776606}
   - component: {fileID: 9130570746195326148}
->>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -91,11 +86,7 @@ CapsuleCollider:
   m_Height: 5.3184557
   m_Direction: 1
   m_Center: {x: 0, y: 2.4092278, z: -0.02}
-<<<<<<< Updated upstream
---- !u!114 &1199510729622094714
-=======
 --- !u!114 &6646727492797776606
->>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,11 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 0.1
   lerpTime: 0
-<<<<<<< Updated upstream
---- !u!114 &6787846251731656436
-=======
 --- !u!114 &9130570746195326148
->>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

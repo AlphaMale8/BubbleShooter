@@ -6,6 +6,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public BallManager ballManager;
+    
     [SerializeField] protected GameObject bullet;
     [SerializeField] protected float rotateSpeed = 2.0f;
     [SerializeField] protected float bulletSpeed;
@@ -41,7 +42,7 @@ public class Gun : MonoBehaviour
         return this.currentGauge;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         currentGauge = maxGauge;
     }

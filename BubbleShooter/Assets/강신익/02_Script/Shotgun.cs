@@ -7,6 +7,14 @@ public class Shotgun : Gun
     [SerializeField] private int bulletNum;
     [SerializeField] private float destroyTime;
 
+    Animator animator;
+
+    protected override void Start()
+    {
+        animator = GameObject.FindGameObjectWithTag("Bear").GetComponent<Animator>();
+    }
+
+    // Update is called once per frame
     void Update()
     {
         base.Update();
@@ -23,10 +31,11 @@ public class Shotgun : Gun
         // Bullet 생성하면서 위치, 회전, 머테리얼 넣어줌
         if (Input.GetKeyUp(KeyCode.Space) && currentGauge >= useGauge)
         {
-             List<Vector3> positions = GameObject.Find("BallManager").GetComponent<BallManager>().data.SpawnPosition;
+            List<Vector3> positions = GameObject.Find("BallManager").GetComponent<BallManager>().data.SpawnPosition;
 
             for (int i = 0; i < positions.Count; ++i)
             {
+                animator.SetTrigger("IsAttack");
                 GameObject newBullet = Instantiate(bullet);
 
                 newBullet.transform.position = transform.position;
